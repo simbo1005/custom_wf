@@ -1,0 +1,91 @@
+KoO + Ndn / Krea 2 Turbo / version 2
+
+IMPORT
+Open KoO_Ndn_Krea2_Turbo_5090.json from this repository in ComfyUI.
+On the tested Vast instance the expanded version is saved separately as
+KoO_Ndn_Krea2_Turbo_5090_v2. It uses native Krea 2 Turbo BF16.
+
+The original quality recipe is preserved. The v2 default native and final
+outputs were pixel-identical to the previous version on the RTX 5090.
+
+START
+Choose preset 01 in the KoO manager, then Apply. Edit the single PROMPT box.
+Character: r0mdl_000002750.safetensors, trigger r0mdl, model strength 0.75.
+Power LoRA Loader replaces six separate loaders. Model strengths:
+Snapshot 0.90; Skin Texture 0.30; Phone Photography 0.35.
+Realism engine and Lenovo start disabled. Keep CLIP strengths at zero to
+preserve the tested model-only behavior. Style presets leave character alone.
+
+MODES / PRESETS
+01  Generate: selected Ndn quality, net 1.5x upscale and texture pass.
+02  Generate: Euler 8 / simple / CFG 1, native-resolution draft.
+03  Loaded image: upscale original pixels, then texture recovery.
+04  Loaded image: resize/crop to canvas, img2img refinement, then upscale.
+05  Reference image: depth-guided new generation.
+06  Reference image: pose-guided new generation.
+07  Restore selected style strengths.
+08  Available Ndn style strengths.
+09  Character only: disable style rows.
+10  Turn off face repair, eye repair, CRT and JPEG effects.
+11  Loaded image: learned upscale only, without diffusion or VAE round trip.
+12  Restore selected texture sampler and enable texture recovery.
+
+IMAGE INPUTS
+Two separate Load Image nodes support independent editing and reference inputs.
+A generated clothed sample named KoO_Ndn_sample.png was uploaded to the tested
+instance. On another instance, select/upload valid images into both Load Image
+nodes before queuing. No private reference images are included in the repo.
+
+The SOURCE switch chooses a new generation (OFF) or the existing image (ON).
+For existing images, Refine input first? OFF preserves original pixels and size
+before upscale. ON center-crops/resizes to the canvas and uses Euler 8 / simple /
+CFG 1 / denoise 0.25. The shared prompt describes the desired result.
+
+For references, SOURCE stays OFF. ENABLE REFERENCE is ON. REFERENCE TYPE:
+OFF = depth; ON = pose. Model and conditioning route together automatically.
+Depth uses Depth Anything V2 and the dedicated Krea control LoRA at 0.90.
+Pose uses DWPose, the Ostris model patch with KV cache, and pose LoRA at 1.00.
+Reference control applies to new generation, not the existing-image branch.
+
+UPSCALE AND OPTIONAL TOOLS
+UltraSharp V2 and NMKD Superscale are selectable. Both are 4x learned models.
+Lanczos scale 0.375 gives net 1.5x; 0.5 gives net 2x.
+TEXTURE RECOVERY can be switched off independently of learned upscaling.
+The selected texture pass is Euler ancestral / simple, four steps, CFG 1,
+denoise 0.34. The native quality passes retain the original Ndn 15-step schedules
+with limits 12 and 3, eta 0.5, and refinement denoise 0.27. They are separate passes.
+
+Face and eye detailers retain Ndn's donor settings behind separate switches.
+Use only for visible issues and compare likeness afterward. Both start OFF.
+CRT Post-Process Suite restores grade, sharpening, glow, lens and grain controls.
+Its internal upscale is OFF initially to avoid double enlargement.
+MoreJPEG starts at quality 92, sharpening 1.0 and blend 0.25; its switch is OFF.
+It changes pixels; the separate SaveImage node still writes PNG.
+
+Two rgthree comparison viewers show base versus final and before/after tools.
+Native/base and final PNGs save separately. KoO Finisher grading affects its own
+interactive export, not its output socket or the separately saved PNGs.
+Fancy Timer displays execution time while the ComfyUI page is open; it is not a
+GPU-only benchmark or a per-node profiler.
+
+LAYOUT
+Top: presets, instructions, timer.
+Main row: models / Power LoRA / canvas -> prompt / source -> samplers -> upscale
+-> save / compare / KoO Finisher.
+Second row: loaded-image refinement -> face / eye repair -> CRT / JPEG.
+Third row: reference input -> depth / pose -> automatic routing.
+
+DEPENDENCIES
+Core ComfyUI; rgthree-comfy; RES4LYF; koo-nodes; CRT-Nodes;
+ComfyUI Impact Pack and Subpack; controlnet_aux; MoreJPEG;
+facok/comfyui-krea2-controlnet; ostris/ComfyUI-Krea2-Ostris-Edit.
+All node classes and selected model filenames were found on the tested instance.
+
+VALIDATION SCOPE
+Default, loaded-image optional tools, depth, pose and learned-only paths have
+separate execution checks. These are functional checks, not an optimization
+study of every restored tool combination. The earlier 20 comparisons support
+the base recipe. No package updates or model replacements were performed.
+Manual GUI import, preset-button operation and timer display were not verified:
+the browser policy blocked opening the temporary local launch page. Serialized
+links, presets, filenames, widget formats and node spacing were checked.

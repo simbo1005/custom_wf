@@ -1,19 +1,19 @@
 {
-  "id": "cad1b7a5-9885-4046-a6a2-ed87ca972ecb",
-  "revision": 0,
-  "last_node_id": 31,
-  "last_link_id": 40,
+  "id": "62934c3e-b83a-47c1-be40-3c90fb38dcfa",
+  "revision": 2,
+  "last_node_id": 112,
+  "last_link_id": 131,
   "nodes": [
     {
       "id": 1,
       "type": "UNETLoader",
-      "title": "01 \u2022 Native Krea 2 Turbo \u2014 BF16",
+      "title": "Native Krea 2 Turbo \u2022 BF16",
       "pos": [
-        0,
-        80
+        20,
+        70
       ],
       "size": [
-        370,
+        500,
         110
       ],
       "flags": {},
@@ -31,23 +31,25 @@
       ],
       "properties": {
         "Node name for S&R": "UNETLoader",
-        "koo_preset_uid": "merged-krea2-1"
+        "koo_preset_uid": "koo-ndn-v2-1"
       },
       "widgets_values": [
         "krea2_turbo_bf16.safetensors",
         "default"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 2,
       "type": "CLIPLoader",
-      "title": "02 \u2022 Ndn text encoder",
+      "title": "Text encoder \u2022 Engineer BF16",
       "pos": [
-        0,
-        250
+        20,
+        240
       ],
       "size": [
-        370,
+        500,
         130
       ],
       "flags": {},
@@ -59,31 +61,33 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            7
+            2
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "CLIPLoader",
-        "koo_preset_uid": "merged-krea2-2"
+        "koo_preset_uid": "koo-ndn-v2-2"
       },
       "widgets_values": [
         "Krea2-Engineer-V1-bf16.safetensors",
         "krea2",
         "default"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 3,
       "type": "VAELoader",
-      "title": "03 \u2022 Shared encode/decode VAE",
+      "title": "VAE \u2022 Wan FP32",
       "pos": [
-        0,
-        440
+        20,
+        430
       ],
       "size": [
-        370,
-        100
+        500,
+        95
       ],
       "flags": {},
       "order": 2,
@@ -94,40 +98,55 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            24,
-            30,
-            36
+            21,
+            27,
+            33,
+            42,
+            48,
+            61,
+            78,
+            100,
+            110
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "VAELoader",
-        "koo_preset_uid": "merged-krea2-3"
+        "koo_preset_uid": "koo-ndn-v2-3"
       },
       "widgets_values": [
         "Wan2_1_VAE_fp32.safetensors"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 4,
-      "type": "LoraLoaderModelOnly",
-      "title": "04 \u2022 CHARACTER \u2014 select only one",
+      "type": "Power Lora Loader (rgthree)",
+      "title": "Character + style \u2022 Power LoRA Loader",
       "pos": [
-        440,
-        80
+        20,
+        570
       ],
       "size": [
-        380,
-        112
+        500,
+        325
       ],
       "flags": {},
-      "order": 9,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 1
+          "link": 1,
+          "shape": 7
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2,
+          "shape": 7
         }
       ],
       "outputs": [
@@ -135,233 +154,94 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            2
+            28,
+            43,
+            59,
+            76,
+            102,
+            105,
+            119
           ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-4"
-      },
-      "widgets_values": [
-        "r0mdl_000002750.safetensors",
-        0.75
-      ]
-    },
-    {
-      "id": 5,
-      "type": "LoraLoaderModelOnly",
-      "title": "05 \u2022 Snapshot style",
-      "pos": [
-        440,
-        230
-      ],
-      "size": [
-        380,
-        112
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
+        },
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 2
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
+          "name": "CLIP",
+          "type": "CLIP",
           "links": [
-            3
+            4,
+            57,
+            60,
+            73,
+            77,
+            109
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-5"
+        "Node name for S&R": "Power Lora Loader (rgthree)",
+        "koo_preset_uid": "koo-ndn-v2-4",
+        "Show Strengths": "Separate Model & Clip",
+        "Match": "",
+        "cnr_id": "rgthree-comfy",
+        "aux_id": "rgthree/rgthree-comfy"
       },
       "widgets_values": [
-        "RealisticSnapshotKrea2.safetensors",
-        0.9
-      ]
-    },
-    {
-      "id": 6,
-      "type": "LoraLoaderModelOnly",
-      "title": "06 \u2022 Skin texture",
-      "pos": [
-        440,
-        380
-      ],
-      "size": [
-        380,
-        112
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
+        {},
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 3
-        }
-      ],
-      "outputs": [
+          "type": "PowerLoraLoaderHeaderWidget"
+        },
         {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            4
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-6"
-      },
-      "widgets_values": [
-        "Krea2_Realistic_Skin_Texture.safetensors",
-        0.3
-      ]
-    },
-    {
-      "id": 7,
-      "type": "LoraLoaderModelOnly",
-      "title": "07 \u2022 Phone photography",
-      "pos": [
-        440,
-        530
-      ],
-      "size": [
-        380,
-        112
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
+          "on": true,
+          "lora": "r0mdl_000002750.safetensors",
+          "strength": 0.75,
+          "strengthTwo": 0.0
+        },
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 4
-        }
-      ],
-      "outputs": [
+          "on": true,
+          "lora": "RealisticSnapshotKrea2.safetensors",
+          "strength": 0.9,
+          "strengthTwo": 0.0
+        },
         {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            5
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-7"
-      },
-      "widgets_values": [
-        "phone_photography_2020_krea2.safetensors",
-        0.35
-      ]
-    },
-    {
-      "id": 8,
-      "type": "LoraLoaderModelOnly",
-      "title": "08 \u2022 KoO realism engine \u2014 optional, 0 = off",
-      "pos": [
-        440,
-        680
-      ],
-      "size": [
-        380,
-        112
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [
+          "on": true,
+          "lora": "Krea2_Realistic_Skin_Texture.safetensors",
+          "strength": 0.3,
+          "strengthTwo": 0.0
+        },
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 5
-        }
-      ],
-      "outputs": [
+          "on": true,
+          "lora": "phone_photography_2020_krea2.safetensors",
+          "strength": 0.35,
+          "strengthTwo": 0.0
+        },
         {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            6
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-8"
-      },
-      "widgets_values": [
-        "realism_engine_krea2_v3.1.safetensors",
-        0.0
-      ]
-    },
-    {
-      "id": 9,
-      "type": "LoraLoaderModelOnly",
-      "title": "09 \u2022 Lenovo \u2014 optional, 0 = off",
-      "pos": [
-        440,
-        830
-      ],
-      "size": [
-        380,
-        112
-      ],
-      "flags": {},
-      "order": 16,
-      "mode": 0,
-      "inputs": [
+          "on": false,
+          "lora": "realism_engine_krea2_v3.1.safetensors",
+          "strength": 0.0,
+          "strengthTwo": 0.0
+        },
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 6
-        }
+          "on": false,
+          "lora": "lenovo_krea2.safetensors",
+          "strength": 0.0,
+          "strengthTwo": 0.0
+        },
+        {},
+        ""
       ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            9,
-            12,
-            17,
-            31
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly",
-        "koo_preset_uid": "merged-krea2-9"
-      },
-      "widgets_values": [
-        "lenovo_krea2.safetensors",
-        0.0
-      ]
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 10,
       "type": "KoOResolutionNext",
-      "title": "10 \u2022 KoO resolution \u2014 16-channel latent",
+      "title": "CANVAS \u2022 16-channel latent",
       "pos": [
-        0,
-        660
+        20,
+        950
       ],
       "size": [
-        380,
-        650
+        500,
+        540
       ],
       "flags": {},
       "order": 3,
@@ -371,12 +251,18 @@
         {
           "name": "width",
           "type": "INT",
-          "links": []
+          "links": [
+            38,
+            95
+          ]
         },
         {
           "name": "height",
           "type": "INT",
-          "links": []
+          "links": [
+            39,
+            96
+          ]
         },
         {
           "name": "resolution_label",
@@ -387,14 +273,16 @@
           "name": "latent",
           "type": "LATENT",
           "links": [
-            15,
-            20
+            9,
+            17,
+            101
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "KoOResolutionNext",
-        "koo_preset_uid": "merged-krea2-10"
+        "koo_preset_uid": "koo-ndn-v2-10",
+        "kooResolutionNextAppearanceOpen": false
       },
       "widgets_values": [
         1024,
@@ -406,37 +294,39 @@
         "SD3 / Flux 1 / Qwen",
         1
       ],
-      "widgets_values_named": {
-        "base_width": 1024,
-        "base_height": 1280,
-        "ratio": "4:5",
-        "max_side": 1280,
-        "max_side_lock": false,
-        "scale": "x1",
-        "latent_mode": "SD3 / Flux 1 / Qwen",
-        "batch_size": 1
-      }
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 11,
       "type": "CLIPTextEncode",
-      "title": "11 \u2022 One prompt shared by every pass",
+      "title": "Text encoding \u2022 shared prompt",
       "pos": [
-        880,
-        80
+        600,
+        440
       ],
       "size": [
         480,
-        390
+        100
       ],
-      "flags": {},
-      "order": 10,
+      "flags": {
+        "collapsed": true
+      },
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 7
+          "link": 4
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3,
+          "widget": {
+            "name": "text"
+          }
         }
       ],
       "outputs": [
@@ -444,42 +334,46 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            8,
-            10,
-            13,
-            18,
-            32
+            5,
+            29,
+            44,
+            116,
+            122
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "CLIPTextEncode",
-        "koo_preset_uid": "merged-krea2-11"
+        "koo_preset_uid": "koo-ndn-v2-11"
       },
       "widgets_values": [
         "r0mdl, a casual handheld phone photo of an adult woman sitting beside a cafe window, wearing a white cotton T-shirt under an open blue denim shirt. Waist-up framing at conversational distance, slightly off-center. She looks toward the camera with a relaxed expression. Soft daylight from the window mixes with warmer room light. Natural variation in cheek color, small skin pores where in focus, fine flyaway hairs. The cotton has soft folds and the denim has visible seams and weave. The cafe remains recognizable behind her, with mild handheld softness and ordinary phone-camera exposure. Unretouched everyday snapshot."
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 12,
       "type": "ConditioningZeroOut",
-      "title": "12 \u2022 CFG 1 negative placeholder",
+      "title": "Negative placeholder \u2022 CFG 1",
       "pos": [
-        880,
-        520
+        600,
+        510
       ],
       "size": [
-        330,
-        75
+        450,
+        70
       ],
-      "flags": {},
-      "order": 12,
+      "flags": {
+        "collapsed": true
+      },
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 8
+          "link": 5
         }
       ],
       "outputs": [
@@ -487,54 +381,56 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            11,
-            14,
-            19,
-            33
+            30,
+            45,
+            63,
+            80
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "ConditioningZeroOut",
-        "koo_preset_uid": "merged-krea2-12"
+        "koo_preset_uid": "koo-ndn-v2-12"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 13,
       "type": "ClownsharKSampler_Beta",
-      "title": "13 \u2022 Ndn composition pass",
+      "title": "QUALITY 1 \u2022 Euler / beta",
       "pos": [
-        1430,
-        80
+        1150,
+        70
       ],
       "size": [
-        360,
+        400,
         430
       ],
       "flags": {},
-      "order": 17,
+      "order": 47,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 9
+          "link": 6
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 10
+          "link": 7
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 11
+          "link": 8
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 15
+          "link": 9
         },
         {
           "name": "sigmas",
@@ -562,7 +458,7 @@
           "name": "denoised",
           "type": "LATENT",
           "links": [
-            16
+            13
           ]
         },
         {
@@ -573,7 +469,7 @@
       ],
       "properties": {
         "Node name for S&R": "ClownsharKSampler_Beta",
-        "koo_preset_uid": "merged-krea2-13",
+        "koo_preset_uid": "koo-ndn-v2-13",
         "aux_id": "ClownsharkBatwing/RES4LYF"
       },
       "widgets_values": [
@@ -588,43 +484,45 @@
         "fixed",
         "standard",
         true
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 14,
       "type": "ClownsharKSampler_Beta",
-      "title": "14 \u2022 Ndn denoised-latent refinement",
+      "title": "QUALITY 2 \u2022 RES 4s / kl_optimal",
       "pos": [
-        1840,
-        80
+        1600,
+        70
       ],
       "size": [
-        400,
+        420,
         430
       ],
       "flags": {},
-      "order": 19,
+      "order": 49,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 12
+          "link": 10
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 13
+          "link": 11
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 14
+          "link": 12
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 16
+          "link": 13
         },
         {
           "name": "sigmas",
@@ -652,7 +550,7 @@
           "name": "denoised",
           "type": "LATENT",
           "links": [
-            22
+            19
           ]
         },
         {
@@ -663,7 +561,7 @@
       ],
       "properties": {
         "Node name for S&R": "ClownsharKSampler_Beta",
-        "koo_preset_uid": "merged-krea2-14",
+        "koo_preset_uid": "koo-ndn-v2-14",
         "aux_id": "ClownsharkBatwing/RES4LYF"
       },
       "widgets_values": [
@@ -678,43 +576,45 @@
         "fixed",
         "standard",
         true
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 15,
       "type": "KSampler",
-      "title": "15 \u2022 Official sampling baseline",
+      "title": "FAST \u2022 Euler / simple / 8",
       "pos": [
-        1430,
-        700
+        1150,
+        680
       ],
       "size": [
-        360,
-        290
+        400,
+        300
       ],
       "flags": {},
-      "order": 18,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 17
+          "link": 14
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 18
+          "link": 15
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 19
+          "link": 16
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 20
+          "link": 17
         }
       ],
       "outputs": [
@@ -722,13 +622,13 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            21
+            18
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "KSampler",
-        "koo_preset_uid": "merged-krea2-15"
+        "koo_preset_uid": "koo-ndn-v2-15"
       },
       "widgets_values": [
         672786715342561,
@@ -738,33 +638,35 @@
         "euler",
         "simple",
         1.0
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 16,
       "type": "ComfySwitchNode",
-      "title": "16 \u2022 Use Ndn passes? false = Euler 8",
+      "title": "QUALITY MODE \u2022 ON Ndn / OFF fast",
       "pos": [
-        2300,
-        90
+        1600,
+        590
       ],
       "size": [
-        330,
-        110
+        420,
+        115
       ],
       "flags": {},
-      "order": 20,
+      "order": 50,
       "mode": 0,
       "inputs": [
         {
           "name": "on_false",
           "type": "*",
-          "link": 21
+          "link": 18
         },
         {
           "name": "on_true",
           "type": "*",
-          "link": 22
+          "link": 19
         }
       ],
       "outputs": [
@@ -772,43 +674,45 @@
           "name": "output",
           "type": "*",
           "links": [
-            23
+            20
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "ComfySwitchNode",
-        "koo_preset_uid": "merged-krea2-16"
+        "koo_preset_uid": "koo-ndn-v2-16"
       },
       "widgets_values": [
         true
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 17,
       "type": "VAEDecodeTiled",
-      "title": "17 \u2022 Native image",
+      "title": "Decode native image",
       "pos": [
-        2300,
-        300
+        1600,
+        800
       ],
       "size": [
-        330,
-        195
+        420,
+        190
       ],
       "flags": {},
-      "order": 21,
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 23
+          "link": 20
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 24
+          "link": 21
         }
       ],
       "outputs": [
@@ -816,64 +720,66 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            25,
-            27,
-            37
+            51
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "VAEDecodeTiled",
-        "koo_preset_uid": "merged-krea2-17"
+        "koo_preset_uid": "koo-ndn-v2-17"
       },
       "widgets_values": [
         512,
         128,
         4096,
         64
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 18,
       "type": "SaveImage",
-      "title": "18 \u2022 Save native PNG",
+      "title": "Save base PNG",
       "pos": [
-        2300,
-        600
+        1150,
+        1070
       ],
       "size": [
-        330,
-        300
+        870,
+        200
       ],
       "flags": {},
-      "order": 22,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 25
+          "link": 22
         }
       ],
       "outputs": [],
       "properties": {
         "Node name for S&R": "SaveImage",
-        "koo_preset_uid": "merged-krea2-18"
+        "koo_preset_uid": "koo-ndn-v2-18"
       },
       "widgets_values": [
         "KoO_Ndn_Turbo/native"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 19,
       "type": "UpscaleModelLoader",
-      "title": "19 \u2022 Ndn upscale model",
+      "title": "Default \u2022 UltraSharp V2 4x",
       "pos": [
-        2720,
-        80
+        2140,
+        70
       ],
       "size": [
-        330,
+        390,
         100
       ],
       "flags": {},
@@ -885,43 +791,45 @@
           "name": "UPSCALE_MODEL",
           "type": "UPSCALE_MODEL",
           "links": [
-            26
+            55
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "UpscaleModelLoader",
-        "koo_preset_uid": "merged-krea2-19"
+        "koo_preset_uid": "koo-ndn-v2-19"
       },
       "widgets_values": [
         "4x-UltraSharpV2.pth"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 20,
       "type": "ImageUpscaleWithModel",
-      "title": "20 \u2022 Learned 4\u00d7 upscale",
+      "title": "Learned upscale",
       "pos": [
-        2720,
-        250
+        2140,
+        610
       ],
       "size": [
-        330,
-        90
+        390,
+        100
       ],
       "flags": {},
-      "order": 23,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
           "name": "upscale_model",
           "type": "UPSCALE_MODEL",
-          "link": 26
+          "link": 23
         },
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 27
+          "link": 24
         }
       ],
       "outputs": [
@@ -929,36 +837,38 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            28
+            25
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "ImageUpscaleWithModel",
-        "koo_preset_uid": "merged-krea2-20"
+        "koo_preset_uid": "koo-ndn-v2-20"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 21,
       "type": "ImageScaleBy",
-      "title": "21 \u2022 Lanczos \u2014 0.375 gives net 1.5\u00d7",
+      "title": "Output scale \u2022 .375 = 1.5x / .5 = 2x",
       "pos": [
-        2720,
-        420
+        2140,
+        780
       ],
       "size": [
-        350,
+        390,
         120
       ],
       "flags": {},
-      "order": 24,
+      "order": 55,
       "mode": 0,
       "inputs": [
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 28
+          "link": 25
         }
       ],
       "outputs": [
@@ -966,44 +876,47 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            29
+            26,
+            53
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "ImageScaleBy",
-        "koo_preset_uid": "merged-krea2-21"
+        "koo_preset_uid": "koo-ndn-v2-21"
       },
       "widgets_values": [
         "lanczos",
         0.375
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 22,
       "type": "VAEEncodeTiled",
-      "title": "22 \u2022 Encode enlarged image",
+      "title": "Encode enlarged image",
       "pos": [
-        2720,
-        650
+        2140,
+        970
       ],
       "size": [
-        330,
+        390,
         190
       ],
       "flags": {},
-      "order": 25,
+      "order": 56,
       "mode": 0,
       "inputs": [
         {
           "name": "pixels",
           "type": "IMAGE",
-          "link": 29
+          "link": 26
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 30
+          "link": 27
         }
       ],
       "outputs": [
@@ -1011,56 +924,58 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            34
+            31
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "VAEEncodeTiled",
-        "koo_preset_uid": "merged-krea2-22"
+        "koo_preset_uid": "koo-ndn-v2-22"
       },
       "widgets_values": [
         512,
         64,
         64,
         8
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 23,
       "type": "KSampler",
-      "title": "23 \u2022 Ndn texture recovery",
+      "title": "TEXTURE \u2022 ancestral / simple / 4",
       "pos": [
-        3150,
-        80
+        2650,
+        70
       ],
       "size": [
-        370,
-        295
+        390,
+        300
       ],
       "flags": {},
-      "order": 26,
+      "order": 57,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 31
+          "link": 28
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 32
+          "link": 29
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 33
+          "link": 30
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 34
+          "link": 31
         }
       ],
       "outputs": [
@@ -1068,13 +983,13 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            35
+            32
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "KSampler",
-        "koo_preset_uid": "merged-krea2-23"
+        "koo_preset_uid": "koo-ndn-v2-23"
       },
       "widgets_values": [
         40,
@@ -1084,33 +999,35 @@
         "euler_ancestral",
         "simple",
         0.34
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 24,
       "type": "VAEDecodeTiled",
-      "title": "24 \u2022 Decode texture pass",
+      "title": "Decode texture pass",
       "pos": [
-        3150,
-        470
+        2650,
+        440
       ],
       "size": [
-        330,
-        195
+        390,
+        190
       ],
       "flags": {},
-      "order": 27,
+      "order": 58,
       "mode": 0,
       "inputs": [
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 35
+          "link": 32
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 36
+          "link": 33
         }
       ],
       "outputs": [
@@ -1118,46 +1035,48 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            38
+            54
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "VAEDecodeTiled",
-        "koo_preset_uid": "merged-krea2-24"
+        "koo_preset_uid": "koo-ndn-v2-24"
       },
       "widgets_values": [
         512,
         128,
         4096,
         64
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 25,
       "type": "ComfySwitchNode",
-      "title": "25 \u2022 Enable upscale + texture pass?",
+      "title": "UPSCALE + TEXTURE \u2022 enabled",
       "pos": [
-        3590,
-        80
+        2650,
+        700
       ],
       "size": [
-        330,
-        110
+        390,
+        115
       ],
       "flags": {},
-      "order": 28,
+      "order": 60,
       "mode": 0,
       "inputs": [
         {
           "name": "on_false",
           "type": "*",
-          "link": 37
+          "link": 34
         },
         {
           "name": "on_true",
           "type": "*",
-          "link": 38
+          "link": 35
         }
       ],
       "outputs": [
@@ -1165,70 +1084,75 @@
           "name": "output",
           "type": "*",
           "links": [
-            39,
-            40
+            58,
+            66,
+            93
           ]
         }
       ],
       "properties": {
         "Node name for S&R": "ComfySwitchNode",
-        "koo_preset_uid": "merged-krea2-25"
+        "koo_preset_uid": "koo-ndn-v2-25"
       },
       "widgets_values": [
         true
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 26,
       "type": "SaveImage",
-      "title": "26 \u2022 Save selected final PNG",
+      "title": "FINAL PNG \u2022 selected tools included",
       "pos": [
-        3590,
-        310
+        3190,
+        70
       ],
       "size": [
-        360,
-        340
+        470,
+        540
       ],
       "flags": {},
-      "order": 29,
+      "order": 73,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 39
+          "link": 36
         }
       ],
       "outputs": [],
       "properties": {
         "Node name for S&R": "SaveImage",
-        "koo_preset_uid": "merged-krea2-26"
+        "koo_preset_uid": "koo-ndn-v2-26"
       },
       "widgets_values": [
         "KoO_Ndn_Turbo/final"
-      ]
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 27,
       "type": "KoOFinisher",
-      "title": "27 \u2022 Interactive grade + export",
+      "title": "KoO Finisher \u2022 interactive export",
       "pos": [
-        4050,
-        80
+        3750,
+        70
       ],
       "size": [
         760,
-        1084
+        1140
       ],
       "flags": {},
-      "order": 30,
+      "order": 74,
       "mode": 0,
       "inputs": [
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 40
+          "link": 37
         }
       ],
       "outputs": [
@@ -1240,7 +1164,7 @@
       ],
       "properties": {
         "Node name for S&R": "KoOFinisher",
-        "koo_preset_uid": "merged-krea2-27",
+        "koo_preset_uid": "koo-ndn-v2-27",
         "koo_finisher_state": {
           "cacheId": "",
           "sourceWidth": 0,
@@ -1265,19 +1189,21 @@
           "vignette": 0,
           "grain": 0
         }
-      }
+      },
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
       "id": 28,
       "type": "KoOWorkflowPresetManager",
-      "title": "28 \u2022 Selected settings & comparison presets",
+      "title": "PRESETS \u2022 modes and style stacks",
       "pos": [
-        880,
-        760
+        20,
+        -860
       ],
       "size": [
-        450,
-        550
+        850,
+        610
       ],
       "flags": {},
       "order": 5,
@@ -1286,19 +1212,19 @@
       "outputs": [],
       "properties": {
         "Node name for S&R": "KoOWorkflowPresetManager",
-        "koo_preset_uid": "merged-krea2-28",
+        "koo_preset_uid": "koo-ndn-v2-28",
         "koo_presets": {
-          "01 \u2022 Selected quality sampling": {
+          "01 \u2022 Generate \u2014 selected quality": {
             "version": 1,
-            "name": "01 \u2022 Selected quality sampling",
+            "name": "01 \u2022 Generate \u2014 selected quality",
             "created_at": "2026-10-11T00:00:00Z",
             "updated_at": "2026-10-11T00:00:00Z",
             "nodes": [
               {
-                "koo_uid": "merged-krea2-13",
+                "koo_uid": "koo-ndn-v2-13",
                 "type": "ClownsharKSampler_Beta",
-                "title": "13 \u2022 Ndn composition pass",
-                "id_at_capture": "13",
+                "title": "QUALITY 1 \u2022 Euler / beta",
+                "id_at_capture": 13,
                 "widgets": [
                   {
                     "name": "eta",
@@ -1357,10 +1283,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-14",
+                "koo_uid": "koo-ndn-v2-14",
                 "type": "ClownsharKSampler_Beta",
-                "title": "14 \u2022 Ndn denoised-latent refinement",
-                "id_at_capture": "14",
+                "title": "QUALITY 2 \u2022 RES 4s / kl_optimal",
+                "id_at_capture": 14,
                 "widgets": [
                   {
                     "name": "eta",
@@ -1419,10 +1345,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-16",
+                "koo_uid": "koo-ndn-v2-16",
                 "type": "ComfySwitchNode",
-                "title": "16 \u2022 Use Ndn passes? false = Euler 8",
-                "id_at_capture": "16",
+                "title": "QUALITY MODE \u2022 ON Ndn / OFF fast",
+                "id_at_capture": 16,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1433,10 +1359,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-21",
+                "koo_uid": "koo-ndn-v2-21",
                 "type": "ImageScaleBy",
-                "title": "21 \u2022 Lanczos \u2014 0.375 gives net 1.5\u00d7",
-                "id_at_capture": "21",
+                "title": "Output scale \u2022 .375 = 1.5x / .5 = 2x",
+                "id_at_capture": 21,
                 "widgets": [
                   {
                     "name": "scale_by",
@@ -1447,10 +1373,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-23",
+                "koo_uid": "koo-ndn-v2-23",
                 "type": "KSampler",
-                "title": "23 \u2022 Ndn texture recovery",
-                "id_at_capture": "23",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
                 "widgets": [
                   {
                     "name": "steps",
@@ -1485,156 +1411,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-25",
+                "koo_uid": "koo-ndn-v2-25",
                 "type": "ComfySwitchNode",
-                "title": "25 \u2022 Enable upscale + texture pass?",
-                "id_at_capture": "25",
-                "widgets": [
-                  {
-                    "name": "switch",
-                    "index": 0,
-                    "type": "toggle",
-                    "value": true
-                  }
-                ]
-              }
-            ]
-          },
-          "02 \u2022 Ndn 2x upscale reference (not benchmarked)": {
-            "version": 1,
-            "name": "02 \u2022 Ndn 2x upscale reference (not benchmarked)",
-            "created_at": "2026-10-11T00:00:00Z",
-            "updated_at": "2026-10-11T00:00:00Z",
-            "nodes": [
-              {
-                "koo_uid": "merged-krea2-13",
-                "type": "ClownsharKSampler_Beta",
-                "title": "13 \u2022 Ndn composition pass",
-                "id_at_capture": "13",
-                "widgets": [
-                  {
-                    "name": "eta",
-                    "index": 0,
-                    "type": "number",
-                    "value": 0.5
-                  },
-                  {
-                    "name": "sampler_name",
-                    "index": 1,
-                    "type": "combo",
-                    "value": "linear/euler"
-                  },
-                  {
-                    "name": "scheduler",
-                    "index": 2,
-                    "type": "combo",
-                    "value": "beta"
-                  },
-                  {
-                    "name": "steps",
-                    "index": 3,
-                    "type": "number",
-                    "value": 15
-                  },
-                  {
-                    "name": "steps_to_run",
-                    "index": 4,
-                    "type": "number",
-                    "value": 12
-                  },
-                  {
-                    "name": "denoise",
-                    "index": 5,
-                    "type": "number",
-                    "value": 1.0
-                  },
-                  {
-                    "name": "cfg",
-                    "index": 6,
-                    "type": "number",
-                    "value": 1.0
-                  },
-                  {
-                    "name": "sampler_mode",
-                    "index": 9,
-                    "type": "combo",
-                    "value": "standard"
-                  },
-                  {
-                    "name": "bongmath",
-                    "index": 10,
-                    "type": "toggle",
-                    "value": true
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-14",
-                "type": "ClownsharKSampler_Beta",
-                "title": "14 \u2022 Ndn denoised-latent refinement",
-                "id_at_capture": "14",
-                "widgets": [
-                  {
-                    "name": "eta",
-                    "index": 0,
-                    "type": "number",
-                    "value": 0.5
-                  },
-                  {
-                    "name": "sampler_name",
-                    "index": 1,
-                    "type": "combo",
-                    "value": "exponential/res_4s_munthe-kaas"
-                  },
-                  {
-                    "name": "scheduler",
-                    "index": 2,
-                    "type": "combo",
-                    "value": "kl_optimal"
-                  },
-                  {
-                    "name": "steps",
-                    "index": 3,
-                    "type": "number",
-                    "value": 15
-                  },
-                  {
-                    "name": "steps_to_run",
-                    "index": 4,
-                    "type": "number",
-                    "value": 3
-                  },
-                  {
-                    "name": "denoise",
-                    "index": 5,
-                    "type": "number",
-                    "value": 0.27
-                  },
-                  {
-                    "name": "cfg",
-                    "index": 6,
-                    "type": "number",
-                    "value": 1.0
-                  },
-                  {
-                    "name": "sampler_mode",
-                    "index": 9,
-                    "type": "combo",
-                    "value": "standard"
-                  },
-                  {
-                    "name": "bongmath",
-                    "index": 10,
-                    "type": "toggle",
-                    "value": true
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-16",
-                "type": "ComfySwitchNode",
-                "title": "16 \u2022 Use Ndn passes? false = Euler 8",
-                "id_at_capture": "16",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1645,62 +1425,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-21",
-                "type": "ImageScaleBy",
-                "title": "21 \u2022 Lanczos \u2014 0.375 gives net 1.5\u00d7",
-                "id_at_capture": "21",
-                "widgets": [
-                  {
-                    "name": "scale_by",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.5
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-23",
-                "type": "KSampler",
-                "title": "23 \u2022 Ndn texture recovery",
-                "id_at_capture": "23",
-                "widgets": [
-                  {
-                    "name": "steps",
-                    "index": 2,
-                    "type": "number",
-                    "value": 4
-                  },
-                  {
-                    "name": "cfg",
-                    "index": 3,
-                    "type": "number",
-                    "value": 1.0
-                  },
-                  {
-                    "name": "sampler_name",
-                    "index": 4,
-                    "type": "combo",
-                    "value": "euler_ancestral"
-                  },
-                  {
-                    "name": "scheduler",
-                    "index": 5,
-                    "type": "combo",
-                    "value": "simple"
-                  },
-                  {
-                    "name": "denoise",
-                    "index": 6,
-                    "type": "number",
-                    "value": 0.34
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-25",
+                "koo_uid": "koo-ndn-v2-43",
                 "type": "ComfySwitchNode",
-                "title": "25 \u2022 Enable upscale + texture pass?",
-                "id_at_capture": "25",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1709,20 +1437,12 @@
                     "value": true
                   }
                 ]
-              }
-            ]
-          },
-          "03 \u2022 Euler 8 native baseline": {
-            "version": 1,
-            "name": "03 \u2022 Euler 8 native baseline",
-            "created_at": "2026-10-11T00:00:00Z",
-            "updated_at": "2026-10-11T00:00:00Z",
-            "nodes": [
+              },
               {
-                "koo_uid": "merged-krea2-16",
+                "koo_uid": "koo-ndn-v2-39",
                 "type": "ComfySwitchNode",
-                "title": "16 \u2022 Use Ndn passes? false = Euler 8",
-                "id_at_capture": "16",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1733,10 +1453,200 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-15",
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              }
+            ]
+          },
+          "02 \u2022 Generate \u2014 fast native draft": {
+            "version": 1,
+            "name": "02 \u2022 Generate \u2014 fast native draft",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-39",
+                "type": "ComfySwitchNode",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-15",
                 "type": "KSampler",
-                "title": "15 \u2022 Official sampling baseline",
-                "id_at_capture": "15",
+                "title": "FAST \u2022 Euler / simple / 8",
+                "id_at_capture": 15,
                 "widgets": [
                   {
                     "name": "steps",
@@ -1771,10 +1681,24 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-25",
+                "koo_uid": "koo-ndn-v2-16",
                 "type": "ComfySwitchNode",
-                "title": "25 \u2022 Enable upscale + texture pass?",
-                "id_at_capture": "25",
+                "title": "QUALITY MODE \u2022 ON Ndn / OFF fast",
+                "id_at_capture": 16,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-25",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1786,69 +1710,17 @@
               }
             ]
           },
-          "04 \u2022 Euler 8 + selected finish": {
+          "03 \u2022 Loaded image \u2014 upscale + texture": {
             "version": 1,
-            "name": "04 \u2022 Euler 8 + selected finish",
+            "name": "03 \u2022 Loaded image \u2014 upscale + texture",
             "created_at": "2026-10-11T00:00:00Z",
             "updated_at": "2026-10-11T00:00:00Z",
             "nodes": [
               {
-                "koo_uid": "merged-krea2-16",
+                "koo_uid": "koo-ndn-v2-39",
                 "type": "ComfySwitchNode",
-                "title": "16 \u2022 Use Ndn passes? false = Euler 8",
-                "id_at_capture": "16",
-                "widgets": [
-                  {
-                    "name": "switch",
-                    "index": 0,
-                    "type": "toggle",
-                    "value": false
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-15",
-                "type": "KSampler",
-                "title": "15 \u2022 Official sampling baseline",
-                "id_at_capture": "15",
-                "widgets": [
-                  {
-                    "name": "steps",
-                    "index": 2,
-                    "type": "number",
-                    "value": 8
-                  },
-                  {
-                    "name": "cfg",
-                    "index": 3,
-                    "type": "number",
-                    "value": 1.0
-                  },
-                  {
-                    "name": "sampler_name",
-                    "index": 4,
-                    "type": "combo",
-                    "value": "euler"
-                  },
-                  {
-                    "name": "scheduler",
-                    "index": 5,
-                    "type": "combo",
-                    "value": "simple"
-                  },
-                  {
-                    "name": "denoise",
-                    "index": 6,
-                    "type": "number",
-                    "value": 1.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-25",
-                "type": "ComfySwitchNode",
-                "title": "25 \u2022 Enable upscale + texture pass?",
-                "id_at_capture": "25",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
                 "widgets": [
                   {
                     "name": "switch",
@@ -1859,24 +1731,122 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-21",
-                "type": "ImageScaleBy",
-                "title": "21 \u2022 Lanczos \u2014 0.375 gives net 1.5\u00d7",
-                "id_at_capture": "21",
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
                 "widgets": [
                   {
-                    "name": "scale_by",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.375
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
                   }
                 ]
               },
               {
-                "koo_uid": "merged-krea2-23",
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-38",
+                "type": "ComfySwitchNode",
+                "title": "Refine input first? OFF = original pixels",
+                "id_at_capture": 38,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-25",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-23",
                 "type": "KSampler",
-                "title": "23 \u2022 Ndn texture recovery",
-                "id_at_capture": "23",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
                 "widgets": [
                   {
                     "name": "steps",
@@ -1909,254 +1879,220 @@
                     "value": 0.34
                   }
                 ]
-              }
-            ]
-          },
-          "05 \u2022 Balanced style strengths": {
-            "version": 1,
-            "name": "05 \u2022 Balanced style strengths",
-            "created_at": "2026-10-11T00:00:00Z",
-            "updated_at": "2026-10-11T00:00:00Z",
-            "nodes": [
-              {
-                "koo_uid": "merged-krea2-5",
-                "type": "LoraLoaderModelOnly",
-                "title": "05 \u2022 Snapshot style",
-                "id_at_capture": "5",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.9
-                  }
-                ]
               },
               {
-                "koo_uid": "merged-krea2-6",
-                "type": "LoraLoaderModelOnly",
-                "title": "06 \u2022 Skin texture",
-                "id_at_capture": "6",
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
                 "widgets": [
                   {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.3
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-7",
-                "type": "LoraLoaderModelOnly",
-                "title": "07 \u2022 Phone photography",
-                "id_at_capture": "7",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.35
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-8",
-                "type": "LoraLoaderModelOnly",
-                "title": "08 \u2022 KoO realism engine \u2014 optional, 0 = off",
-                "id_at_capture": "8",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-9",
-                "type": "LoraLoaderModelOnly",
-                "title": "09 \u2022 Lenovo \u2014 optional, 0 = off",
-                "id_at_capture": "9",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
                   }
                 ]
               }
             ]
           },
-          "06 \u2022 Available Ndn style strengths": {
+          "04 \u2022 Loaded image \u2014 refine + upscale": {
             "version": 1,
-            "name": "06 \u2022 Available Ndn style strengths",
+            "name": "04 \u2022 Loaded image \u2014 refine + upscale",
             "created_at": "2026-10-11T00:00:00Z",
             "updated_at": "2026-10-11T00:00:00Z",
             "nodes": [
               {
-                "koo_uid": "merged-krea2-5",
-                "type": "LoraLoaderModelOnly",
-                "title": "05 \u2022 Snapshot style",
-                "id_at_capture": "5",
+                "koo_uid": "koo-ndn-v2-39",
+                "type": "ComfySwitchNode",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
                 "widgets": [
                   {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 1.25
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
                   }
                 ]
               },
               {
-                "koo_uid": "merged-krea2-6",
-                "type": "LoraLoaderModelOnly",
-                "title": "06 \u2022 Skin texture",
-                "id_at_capture": "6",
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
                 "widgets": [
                   {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.6
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
                   }
                 ]
               },
               {
-                "koo_uid": "merged-krea2-7",
-                "type": "LoraLoaderModelOnly",
-                "title": "07 \u2022 Phone photography",
-                "id_at_capture": "7",
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
                 "widgets": [
                   {
-                    "name": "strength_model",
-                    "index": 1,
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-38",
+                "type": "ComfySwitchNode",
+                "title": "Refine input first? OFF = original pixels",
+                "id_at_capture": 38,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-25",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-23",
+                "type": "KSampler",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
+                "widgets": [
+                  {
+                    "name": "steps",
+                    "index": 2,
+                    "type": "number",
+                    "value": 4
+                  },
+                  {
+                    "name": "cfg",
+                    "index": 3,
                     "type": "number",
                     "value": 1.0
+                  },
+                  {
+                    "name": "sampler_name",
+                    "index": 4,
+                    "type": "combo",
+                    "value": "euler_ancestral"
+                  },
+                  {
+                    "name": "scheduler",
+                    "index": 5,
+                    "type": "combo",
+                    "value": "simple"
+                  },
+                  {
+                    "name": "denoise",
+                    "index": 6,
+                    "type": "number",
+                    "value": 0.34
                   }
                 ]
               },
               {
-                "koo_uid": "merged-krea2-8",
-                "type": "LoraLoaderModelOnly",
-                "title": "08 \u2022 KoO realism engine \u2014 optional, 0 = off",
-                "id_at_capture": "8",
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
                 "widgets": [
                   {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-9",
-                "type": "LoraLoaderModelOnly",
-                "title": "09 \u2022 Lenovo \u2014 optional, 0 = off",
-                "id_at_capture": "9",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.25
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
                   }
                 ]
               }
             ]
           },
-          "07 \u2022 Character only (style ablation)": {
+          "05 \u2022 Reference \u2014 depth generation": {
             "version": 1,
-            "name": "07 \u2022 Character only (style ablation)",
+            "name": "05 \u2022 Reference \u2014 depth generation",
             "created_at": "2026-10-11T00:00:00Z",
             "updated_at": "2026-10-11T00:00:00Z",
             "nodes": [
               {
-                "koo_uid": "merged-krea2-5",
-                "type": "LoraLoaderModelOnly",
-                "title": "05 \u2022 Snapshot style",
-                "id_at_capture": "5",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-6",
-                "type": "LoraLoaderModelOnly",
-                "title": "06 \u2022 Skin texture",
-                "id_at_capture": "6",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-7",
-                "type": "LoraLoaderModelOnly",
-                "title": "07 \u2022 Phone photography",
-                "id_at_capture": "7",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-8",
-                "type": "LoraLoaderModelOnly",
-                "title": "08 \u2022 KoO realism engine \u2014 optional, 0 = off",
-                "id_at_capture": "8",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              },
-              {
-                "koo_uid": "merged-krea2-9",
-                "type": "LoraLoaderModelOnly",
-                "title": "09 \u2022 Lenovo \u2014 optional, 0 = off",
-                "id_at_capture": "9",
-                "widgets": [
-                  {
-                    "name": "strength_model",
-                    "index": 1,
-                    "type": "number",
-                    "value": 0.0
-                  }
-                ]
-              }
-            ]
-          },
-          "08 \u2022 Selected quality, native resolution": {
-            "version": 1,
-            "name": "08 \u2022 Selected quality, native resolution",
-            "created_at": "2026-10-11T00:00:00Z",
-            "updated_at": "2026-10-11T00:00:00Z",
-            "nodes": [
-              {
-                "koo_uid": "merged-krea2-13",
+                "koo_uid": "koo-ndn-v2-13",
                 "type": "ClownsharKSampler_Beta",
-                "title": "13 \u2022 Ndn composition pass",
-                "id_at_capture": "13",
+                "title": "QUALITY 1 \u2022 Euler / beta",
+                "id_at_capture": 13,
                 "widgets": [
                   {
                     "name": "eta",
@@ -2215,10 +2151,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-14",
+                "koo_uid": "koo-ndn-v2-14",
                 "type": "ClownsharKSampler_Beta",
-                "title": "14 \u2022 Ndn denoised-latent refinement",
-                "id_at_capture": "14",
+                "title": "QUALITY 2 \u2022 RES 4s / kl_optimal",
+                "id_at_capture": 14,
                 "widgets": [
                   {
                     "name": "eta",
@@ -2277,10 +2213,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-16",
+                "koo_uid": "koo-ndn-v2-16",
                 "type": "ComfySwitchNode",
-                "title": "16 \u2022 Use Ndn passes? false = Euler 8",
-                "id_at_capture": "16",
+                "title": "QUALITY MODE \u2022 ON Ndn / OFF fast",
+                "id_at_capture": 16,
                 "widgets": [
                   {
                     "name": "switch",
@@ -2291,10 +2227,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-21",
+                "koo_uid": "koo-ndn-v2-21",
                 "type": "ImageScaleBy",
-                "title": "21 \u2022 Lanczos \u2014 0.375 gives net 1.5\u00d7",
-                "id_at_capture": "21",
+                "title": "Output scale \u2022 .375 = 1.5x / .5 = 2x",
+                "id_at_capture": 21,
                 "widgets": [
                   {
                     "name": "scale_by",
@@ -2305,10 +2241,10 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-23",
+                "koo_uid": "koo-ndn-v2-23",
                 "type": "KSampler",
-                "title": "23 \u2022 Ndn texture recovery",
-                "id_at_capture": "23",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
                 "widgets": [
                   {
                     "name": "steps",
@@ -2343,37 +2279,1022 @@
                 ]
               },
               {
-                "koo_uid": "merged-krea2-25",
+                "koo_uid": "koo-ndn-v2-25",
                 "type": "ComfySwitchNode",
-                "title": "25 \u2022 Enable upscale + texture pass?",
-                "id_at_capture": "25",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-39",
+                "type": "ComfySwitchNode",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
                 "widgets": [
                   {
                     "name": "switch",
                     "index": 0,
                     "type": "toggle",
                     "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-96",
+                "type": "PrimitiveBoolean",
+                "title": "REFERENCE TYPE \u2022 OFF depth / ON pose",
+                "id_at_capture": 96,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              }
+            ]
+          },
+          "06 \u2022 Reference \u2014 pose generation": {
+            "version": 1,
+            "name": "06 \u2022 Reference \u2014 pose generation",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-13",
+                "type": "ClownsharKSampler_Beta",
+                "title": "QUALITY 1 \u2022 Euler / beta",
+                "id_at_capture": 13,
+                "widgets": [
+                  {
+                    "name": "eta",
+                    "index": 0,
+                    "type": "number",
+                    "value": 0.5
+                  },
+                  {
+                    "name": "sampler_name",
+                    "index": 1,
+                    "type": "combo",
+                    "value": "linear/euler"
+                  },
+                  {
+                    "name": "scheduler",
+                    "index": 2,
+                    "type": "combo",
+                    "value": "beta"
+                  },
+                  {
+                    "name": "steps",
+                    "index": 3,
+                    "type": "number",
+                    "value": 15
+                  },
+                  {
+                    "name": "steps_to_run",
+                    "index": 4,
+                    "type": "number",
+                    "value": 12
+                  },
+                  {
+                    "name": "denoise",
+                    "index": 5,
+                    "type": "number",
+                    "value": 1.0
+                  },
+                  {
+                    "name": "cfg",
+                    "index": 6,
+                    "type": "number",
+                    "value": 1.0
+                  },
+                  {
+                    "name": "sampler_mode",
+                    "index": 9,
+                    "type": "combo",
+                    "value": "standard"
+                  },
+                  {
+                    "name": "bongmath",
+                    "index": 10,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-14",
+                "type": "ClownsharKSampler_Beta",
+                "title": "QUALITY 2 \u2022 RES 4s / kl_optimal",
+                "id_at_capture": 14,
+                "widgets": [
+                  {
+                    "name": "eta",
+                    "index": 0,
+                    "type": "number",
+                    "value": 0.5
+                  },
+                  {
+                    "name": "sampler_name",
+                    "index": 1,
+                    "type": "combo",
+                    "value": "exponential/res_4s_munthe-kaas"
+                  },
+                  {
+                    "name": "scheduler",
+                    "index": 2,
+                    "type": "combo",
+                    "value": "kl_optimal"
+                  },
+                  {
+                    "name": "steps",
+                    "index": 3,
+                    "type": "number",
+                    "value": 15
+                  },
+                  {
+                    "name": "steps_to_run",
+                    "index": 4,
+                    "type": "number",
+                    "value": 3
+                  },
+                  {
+                    "name": "denoise",
+                    "index": 5,
+                    "type": "number",
+                    "value": 0.27
+                  },
+                  {
+                    "name": "cfg",
+                    "index": 6,
+                    "type": "number",
+                    "value": 1.0
+                  },
+                  {
+                    "name": "sampler_mode",
+                    "index": 9,
+                    "type": "combo",
+                    "value": "standard"
+                  },
+                  {
+                    "name": "bongmath",
+                    "index": 10,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-16",
+                "type": "ComfySwitchNode",
+                "title": "QUALITY MODE \u2022 ON Ndn / OFF fast",
+                "id_at_capture": 16,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-21",
+                "type": "ImageScaleBy",
+                "title": "Output scale \u2022 .375 = 1.5x / .5 = 2x",
+                "id_at_capture": 21,
+                "widgets": [
+                  {
+                    "name": "scale_by",
+                    "index": 1,
+                    "type": "number",
+                    "value": 0.375
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-23",
+                "type": "KSampler",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
+                "widgets": [
+                  {
+                    "name": "steps",
+                    "index": 2,
+                    "type": "number",
+                    "value": 4
+                  },
+                  {
+                    "name": "cfg",
+                    "index": 3,
+                    "type": "number",
+                    "value": 1.0
+                  },
+                  {
+                    "name": "sampler_name",
+                    "index": 4,
+                    "type": "combo",
+                    "value": "euler_ancestral"
+                  },
+                  {
+                    "name": "scheduler",
+                    "index": 5,
+                    "type": "combo",
+                    "value": "simple"
+                  },
+                  {
+                    "name": "denoise",
+                    "index": 6,
+                    "type": "number",
+                    "value": 0.34
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-25",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-39",
+                "type": "ComfySwitchNode",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-96",
+                "type": "PrimitiveBoolean",
+                "title": "REFERENCE TYPE \u2022 OFF depth / ON pose",
+                "id_at_capture": 96,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          },
+          "07 \u2022 Restore selected style strengths": {
+            "version": 1,
+            "name": "07 \u2022 Restore selected style strengths",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-4",
+                "type": "Power Lora Loader (rgthree)",
+                "title": "Character + style \u2022 Power LoRA Loader",
+                "id_at_capture": 4,
+                "widgets": [
+                  {
+                    "name": "lora_2",
+                    "index": 3,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "RealisticSnapshotKrea2.safetensors",
+                      "strength": 0.9,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_3",
+                    "index": 4,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "Krea2_Realistic_Skin_Texture.safetensors",
+                      "strength": 0.3,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_4",
+                    "index": 5,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "phone_photography_2020_krea2.safetensors",
+                      "strength": 0.35,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_5",
+                    "index": 6,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "realism_engine_krea2_v3.1.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_6",
+                    "index": 7,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "lenovo_krea2.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "08 \u2022 Available Ndn style strengths": {
+            "version": 1,
+            "name": "08 \u2022 Available Ndn style strengths",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-4",
+                "type": "Power Lora Loader (rgthree)",
+                "title": "Character + style \u2022 Power LoRA Loader",
+                "id_at_capture": 4,
+                "widgets": [
+                  {
+                    "name": "lora_2",
+                    "index": 3,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "RealisticSnapshotKrea2.safetensors",
+                      "strength": 1.25,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_3",
+                    "index": 4,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "Krea2_Realistic_Skin_Texture.safetensors",
+                      "strength": 0.6,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_4",
+                    "index": 5,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "phone_photography_2020_krea2.safetensors",
+                      "strength": 1.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_5",
+                    "index": 6,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "realism_engine_krea2_v3.1.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_6",
+                    "index": 7,
+                    "type": "custom",
+                    "value": {
+                      "on": true,
+                      "lora": "lenovo_krea2.safetensors",
+                      "strength": 0.25,
+                      "strengthTwo": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "09 \u2022 Character only \u2014 styles off": {
+            "version": 1,
+            "name": "09 \u2022 Character only \u2014 styles off",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-4",
+                "type": "Power Lora Loader (rgthree)",
+                "title": "Character + style \u2022 Power LoRA Loader",
+                "id_at_capture": 4,
+                "widgets": [
+                  {
+                    "name": "lora_2",
+                    "index": 3,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "RealisticSnapshotKrea2.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_3",
+                    "index": 4,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "Krea2_Realistic_Skin_Texture.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_4",
+                    "index": 5,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "phone_photography_2020_krea2.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_5",
+                    "index": 6,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "realism_engine_krea2_v3.1.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  },
+                  {
+                    "name": "lora_6",
+                    "index": 7,
+                    "type": "custom",
+                    "value": {
+                      "on": false,
+                      "lora": "lenovo_krea2.safetensors",
+                      "strength": 0.0,
+                      "strengthTwo": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "10 \u2022 Optional tools \u2014 all off": {
+            "version": 1,
+            "name": "10 \u2022 Optional tools \u2014 all off",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              }
+            ]
+          },
+          "11 \u2022 Loaded image \u2014 learned upscale only": {
+            "version": 1,
+            "name": "11 \u2022 Loaded image \u2014 learned upscale only",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-39",
+                "type": "ComfySwitchNode",
+                "title": "SOURCE \u2022 OFF generate / ON load image",
+                "id_at_capture": 39,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-97",
+                "type": "PrimitiveBoolean",
+                "title": "ENABLE REFERENCE \u2022 new generations only",
+                "id_at_capture": 97,
+                "widgets": [
+                  {
+                    "name": "value",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-54",
+                "type": "ComfySwitchNode",
+                "title": "FACE REPAIR \u2022 enable only when needed",
+                "id_at_capture": 54,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-66",
+                "type": "ComfySwitchNode",
+                "title": "EYE REPAIR \u2022 optional second repair",
+                "id_at_capture": 66,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-71",
+                "type": "ComfySwitchNode",
+                "title": "CRT EFFECTS \u2022 off by default",
+                "id_at_capture": 71,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-74",
+                "type": "ComfySwitchNode",
+                "title": "JPEG BLEND \u2022 off by default",
+                "id_at_capture": 74,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-49",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+                "id_at_capture": 49,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-38",
+                "type": "ComfySwitchNode",
+                "title": "Refine input first? OFF = original pixels",
+                "id_at_capture": 38,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-25",
+                "type": "ComfySwitchNode",
+                "title": "UPSCALE + TEXTURE \u2022 enabled",
+                "id_at_capture": 25,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": false
+                  }
+                ]
+              }
+            ]
+          },
+          "12 \u2022 Restore texture sampler": {
+            "version": 1,
+            "name": "12 \u2022 Restore texture sampler",
+            "created_at": "2026-10-11T00:00:00Z",
+            "updated_at": "2026-10-11T00:00:00Z",
+            "nodes": [
+              {
+                "koo_uid": "koo-ndn-v2-23",
+                "type": "KSampler",
+                "title": "TEXTURE \u2022 ancestral / simple / 4",
+                "id_at_capture": 23,
+                "widgets": [
+                  {
+                    "name": "steps",
+                    "index": 2,
+                    "type": "number",
+                    "value": 4
+                  },
+                  {
+                    "name": "cfg",
+                    "index": 3,
+                    "type": "number",
+                    "value": 1.0
+                  },
+                  {
+                    "name": "sampler_name",
+                    "index": 4,
+                    "type": "combo",
+                    "value": "euler_ancestral"
+                  },
+                  {
+                    "name": "scheduler",
+                    "index": 5,
+                    "type": "combo",
+                    "value": "simple"
+                  },
+                  {
+                    "name": "denoise",
+                    "index": 6,
+                    "type": "number",
+                    "value": 0.34
+                  }
+                ]
+              },
+              {
+                "koo_uid": "koo-ndn-v2-43",
+                "type": "ComfySwitchNode",
+                "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+                "id_at_capture": 43,
+                "widgets": [
+                  {
+                    "name": "switch",
+                    "index": 0,
+                    "type": "toggle",
+                    "value": true
                   }
                 ]
               }
             ]
           }
         },
-        "koo_preset_selected": "01 \u2022 Selected quality sampling",
-        "koo_preset_draft_name": "My tuned preset"
+        "koo_preset_selected": "01 \u2022 Generate \u2014 selected quality",
+        "koo_preset_draft_name": "My scene preset"
       }
     },
     {
-      "id": 29,
-      "type": "Note",
-      "title": "START HERE",
+      "id": 100,
+      "type": "PrimitiveStringMultiline",
+      "title": "PROMPT \u2022 use the r0mdl trigger",
       "pos": [
-        0,
-        -330
+        600,
+        70
       ],
       "size": [
-        810,
-        300
+        480,
+        340
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            3,
+            108
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "koo_preset_uid": "koo-ndn-v2-100"
+      },
+      "widgets_values": [
+        "r0mdl, a casual handheld phone photo of an adult woman sitting beside a cafe window, wearing a white cotton T-shirt under an open blue denim shirt. Waist-up framing at conversational distance, slightly off-center. She looks toward the camera with a relaxed expression. Soft daylight from the window mixes with warmer room light. Natural variation in cheek color, small skin pores where in focus, fine flyaway hairs. The cotton has soft folds and the denim has visible seams and weave. The cafe remains recognizable behind her, with mild handheld softness and ordinary phone-camera exposure. Unretouched everyday snapshot."
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 32,
+      "type": "FancyTimerNode",
+      "title": "Execution Timer",
+      "pos": [
+        940,
+        -200
+      ],
+      "size": [
+        500,
+        130
       ],
       "flags": {},
       "order": 6,
@@ -2381,61 +3302,2709 @@
       "inputs": [],
       "outputs": [],
       "properties": {
-        "Node name for S&R": "Note",
-        "koo_preset_uid": "merged-krea2-29"
+        "Node name for S&R": "FancyTimerNode",
+        "koo_preset_uid": "koo-ndn-v2-32",
+        "elapsed_time_str": "00:00:000"
       },
-      "widgets_values": [
-        "Selected after 20 comparison renders on RTX 5090, 11 October 2026.\n1. Model filenames match your tested Vast instance.\n2. Character: r0mdl_000002750 at .75; confirmed trigger r0mdl. For another character, replace both the LoRA and prompt trigger.\n3. Queue once. Native and selected final PNGs are saved.\n4. KoO Finisher grades only its own interactive export.\nNative Turbo needs no Turbo LoRA. Keep CFG 1.\nCore ComfyUI + RES4LYF + your koo-nodes are required."
-      ]
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
-      "id": 30,
-      "type": "Note",
-      "title": "READ THE SAMPLER FIELDS",
+      "id": 33,
+      "type": "LoadImage",
+      "title": "LOAD IMAGE \u2022 refine / upscale",
       "pos": [
-        1430,
-        -330
+        20,
+        1710
       ],
       "size": [
-        810,
-        285
+        480,
+        420
       ],
       "flags": {},
       "order": 7,
       "mode": 0,
       "inputs": [],
-      "outputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            40,
+            49
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
       "properties": {
-        "Node name for S&R": "Note",
-        "koo_preset_uid": "merged-krea2-30"
+        "Node name for S&R": "LoadImage",
+        "koo_preset_uid": "koo-ndn-v2-33"
       },
       "widgets_values": [
-        "Ndn uses 15-step schedules with limits of 12 and 3.\nThe second node takes DENOISED output and starts a new low-denoise pass in standard mode. It is not a continuation of the first sigma schedule.\nThis workflow preserves that topology. Each preset labels sampling or style changes separately. Compare at a fixed prompt, resolution, seed and character strength.\nNo manual AuraFlow shift: native Krea sampling provides its own shift."
-      ]
+        "KoO_Ndn_sample.png",
+        "image"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
     },
     {
-      "id": 31,
-      "type": "Note",
-      "title": "IDENTITY & FINISH",
+      "id": 34,
+      "type": "ImageScale",
+      "title": "Match canvas \u2022 only for img2img",
       "pos": [
-        2720,
-        -330
+        550,
+        1710
       ],
       "size": [
-        800,
-        285
+        330,
+        155
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 40
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 38,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 39,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale",
+        "koo_preset_uid": "koo-ndn-v2-34"
+      },
+      "widgets_values": [
+        "lanczos",
+        512,
+        512,
+        "center"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 35,
+      "type": "VAEEncodeTiled",
+      "title": "Encode loaded image",
+      "pos": [
+        550,
+        1920
+      ],
+      "size": [
+        330,
+        180
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 41
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 42
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeTiled",
+        "koo_preset_uid": "koo-ndn-v2-35"
+      },
+      "widgets_values": [
+        512,
+        64,
+        64,
+        8
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 36,
+      "type": "KSampler",
+      "title": "Loaded image \u2022 gentle refinement",
+      "pos": [
+        920,
+        1710
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 43
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 44
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 45
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 46
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            47
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler",
+        "koo_preset_uid": "koo-ndn-v2-36"
+      },
+      "widgets_values": [
+        40,
+        "fixed",
+        8,
+        1.0,
+        "euler",
+        "simple",
+        0.25
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 37,
+      "type": "VAEDecodeTiled",
+      "title": "Decode refined input",
+      "pos": [
+        920,
+        2070
+      ],
+      "size": [
+        350,
+        180
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 47
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 48
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            50
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeTiled",
+        "koo_preset_uid": "koo-ndn-v2-37"
+      },
+      "widgets_values": [
+        512,
+        128,
+        4096,
+        64
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 38,
+      "type": "ComfySwitchNode",
+      "title": "Refine input first? OFF = original pixels",
+      "pos": [
+        20,
+        2220
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 49
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 50
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            52
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-38"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 39,
+      "type": "ComfySwitchNode",
+      "title": "SOURCE \u2022 OFF generate / ON load image",
+      "pos": [
+        600,
+        590
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 51
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 52
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            22,
+            24,
+            34,
+            91
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-39"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 43,
+      "type": "ComfySwitchNode",
+      "title": "TEXTURE RECOVERY \u2022 OFF = learned upscale only",
+      "pos": [
+        2650,
+        900
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 53
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 54
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-43"
+      },
+      "widgets_values": [
+        true
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 48,
+      "type": "UpscaleModelLoader",
+      "title": "Alternative \u2022 NMKD Superscale 4x",
+      "pos": [
+        2140,
+        250
+      ],
+      "size": [
+        390,
+        100
       ],
       "flags": {},
       "order": 8,
       "mode": 0,
       "inputs": [],
-      "outputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            56
+          ]
+        }
+      ],
       "properties": {
-        "Node name for S&R": "Note",
-        "koo_preset_uid": "merged-krea2-31"
+        "Node name for S&R": "UpscaleModelLoader",
+        "koo_preset_uid": "koo-ndn-v2-48"
       },
       "widgets_values": [
-        "Selected strengths: character .75, snapshot .90, skin .30, phone .35. KoO realism engine and Lenovo start at 0. Disable a missing optional node with Ctrl+B or select an installed file.\nDo not combine different character LoRAs. r0mdl and RoModel filenames are not assumed interchangeable.\nUpscale is optional. At net 1.5\u00d7, 1024\u00d71280 becomes 1536\u00d71920. Selected texture pass: Euler ancestral / simple, 4 steps, CFG 1, denoise .34. The donor 2\u00d7 size was not benchmarked."
+        "4xNMKDSuperscale_4xNMKDSuperscale.pt"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 49,
+      "type": "ComfySwitchNode",
+      "title": "UPSCALE MODEL \u2022 OFF UltraSharp / ON NMKD",
+      "pos": [
+        2140,
+        420
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 55
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-49"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 50,
+      "type": "UltralyticsDetectorProvider",
+      "title": "Face detector",
+      "pos": [
+        1380,
+        1730
+      ],
+      "size": [
+        380,
+        105
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            64
+          ]
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltralyticsDetectorProvider",
+        "koo_preset_uid": "koo-ndn-v2-50",
+        "cnr_id": "comfyui-impact-subpack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Subpack",
+        "ver": "1.3.2"
+      },
+      "widgets_values": [
+        "bbox/face_yolov8m.pt"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 51,
+      "type": "SAMLoader",
+      "title": "SAM segmentation",
+      "pos": [
+        1380,
+        1900
+      ],
+      "size": [
+        380,
+        115
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAM_MODEL",
+          "type": "SAM_MODEL",
+          "links": [
+            65
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAMLoader",
+        "koo_preset_uid": "koo-ndn-v2-51",
+        "cnr_id": "comfyui-impact-pack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Pack",
+        "ver": "8.28.3"
+      },
+      "widgets_values": [
+        "sam_vit_b_01ec64.pth",
+        "Prefer GPU"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 52,
+      "type": "CLIPTextEncode",
+      "title": "Face detail prompt",
+      "pos": [
+        1380,
+        2080
+      ],
+      "size": [
+        380,
+        180
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            62
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "koo_preset_uid": "koo-ndn-v2-52",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.43"
+      },
+      "widgets_values": [
+        "ultra realistic face, detailed skin, natural soft lighting"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 53,
+      "type": "FaceDetailer",
+      "title": "FACE DETAILER \u2022 Ndn settings",
+      "pos": [
+        1810,
+        1730
+      ],
+      "size": [
+        390,
+        1120
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 58
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 59
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 60
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 61
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 62
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 63
+        },
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 64
+        },
+        {
+          "name": "sam_model_opt",
+          "type": "SAM_MODEL",
+          "link": 65,
+          "shape": 7
+        },
+        {
+          "name": "segm_detector_opt",
+          "type": "SEGM_DETECTOR",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "detailer_hook",
+          "type": "DETAILER_HOOK",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "scheduler_func_opt",
+          "type": "SCHEDULER_FUNC",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            67
+          ]
+        },
+        {
+          "name": "cropped_refined",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "cropped_enhanced_alpha",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": []
+        },
+        {
+          "name": "detailer_pipe",
+          "type": "DETAILER_PIPE",
+          "links": []
+        },
+        {
+          "name": "cnet_images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FaceDetailer",
+        "koo_preset_uid": "koo-ndn-v2-53",
+        "cnr_id": "comfyui-impact-pack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Pack",
+        "ver": "8.25.1"
+      },
+      "widgets_values": [
+        1440,
+        true,
+        1440,
+        111111,
+        "fixed",
+        4,
+        1,
+        "er_sde",
+        "beta",
+        0.1,
+        20,
+        true,
+        true,
+        0.4,
+        10,
+        3,
+        "center-1",
+        0,
+        0.93,
+        0,
+        0.7,
+        "False",
+        10,
+        "",
+        1,
+        false,
+        20,
+        false,
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 54,
+      "type": "ComfySwitchNode",
+      "title": "FACE REPAIR \u2022 enable only when needed",
+      "pos": [
+        1380,
+        2320
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 66
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 67
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            69,
+            70,
+            74,
+            81
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-54"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 60,
+      "type": "UltralyticsDetectorProvider",
+      "title": "Eye detector",
+      "pos": [
+        2280,
+        1730
+      ],
+      "size": [
+        380,
+        105
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            68
+          ]
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltralyticsDetectorProvider",
+        "koo_preset_uid": "koo-ndn-v2-60",
+        "cnr_id": "comfyui-impact-subpack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Subpack",
+        "ver": "1.2.9"
+      },
+      "widgets_values": [
+        "bbox/Eyes.pt"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 61,
+      "type": "BboxDetectorSEGS",
+      "title": "Eye boxes",
+      "pos": [
+        2280,
+        1900
+      ],
+      "size": [
+        380,
+        240
+      ],
+      "flags": {},
+      "order": 63,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 68
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 69
+        },
+        {
+          "name": "detailer_hook",
+          "type": "DETAILER_HOOK",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEGS",
+          "type": "SEGS",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BboxDetectorSEGS",
+        "koo_preset_uid": "koo-ndn-v2-61",
+        "cnr_id": "comfyui-impact-pack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Pack",
+        "ver": "429d0159ad429e64d2b3916e6e7be9c22d025c3c"
+      },
+      "widgets_values": [
+        0.6,
+        10,
+        3,
+        10,
+        "all"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 62,
+      "type": "MediaPipeFaceMeshToSEGS",
+      "title": "Eye / pupil mesh",
+      "pos": [
+        2280,
+        2210
+      ],
+      "size": [
+        380,
+        405
+      ],
+      "flags": {},
+      "order": 64,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 70
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEGS",
+          "type": "SEGS",
+          "links": [
+            72
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MediaPipeFaceMeshToSEGS",
+        "koo_preset_uid": "koo-ndn-v2-62",
+        "cnr_id": "comfyui-impact-pack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Pack",
+        "ver": "429d0159ad429e64d2b3916e6e7be9c22d025c3c"
+      },
+      "widgets_values": [
+        3,
+        false,
+        50,
+        1,
+        0,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 63,
+      "type": "ImpactSEGSConcat",
+      "title": "Combine eye regions",
+      "pos": [
+        2280,
+        2680
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 65,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "segs1",
+          "type": "SEGS",
+          "link": 71
+        },
+        {
+          "name": "segs2",
+          "type": "SEGS",
+          "link": 72,
+          "widget": {
+            "name": "segs2"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEGS",
+          "type": "SEGS",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactSEGSConcat",
+        "koo_preset_uid": "koo-ndn-v2-63"
+      },
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 64,
+      "type": "CLIPTextEncode",
+      "title": "Eye detail prompt",
+      "pos": [
+        2710,
+        1730
+      ],
+      "size": [
+        390,
+        180
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 73
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            79
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "koo_preset_uid": "koo-ndn-v2-64",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.18"
+      },
+      "widgets_values": [
+        "perfect eyes, round pupils, round iris, symmetrical eyes, realistic eyes, perfect circles, round"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 65,
+      "type": "DetailerForEachDebug",
+      "title": "EYE DETAILER \u2022 Ndn settings",
+      "pos": [
+        2710,
+        1970
+      ],
+      "size": [
+        390,
+        775
+      ],
+      "flags": {},
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 74
+        },
+        {
+          "name": "segs",
+          "type": "SEGS",
+          "link": 75
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 76
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 77
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 78
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 79
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 80
+        },
+        {
+          "name": "detailer_hook",
+          "type": "DETAILER_HOOK",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "scheduler_func_opt",
+          "type": "SCHEDULER_FUNC",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            82
+          ]
+        },
+        {
+          "name": "cropped",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "cropped_refined",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "cropped_refined_alpha",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "cnet_images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DetailerForEachDebug",
+        "koo_preset_uid": "koo-ndn-v2-65",
+        "cnr_id": "comfyui-impact-pack",
+        "aux_id": "ltdrdata/ComfyUI-Impact-Pack",
+        "ver": "8.25.1"
+      },
+      "widgets_values": [
+        1920,
+        true,
+        1920,
+        1111112,
+        "fixed",
+        12,
+        1,
+        "res_2s",
+        "kl_optimal",
+        0.35,
+        2,
+        true,
+        true,
+        "",
+        1,
+        false,
+        20,
+        false,
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 66,
+      "type": "ComfySwitchNode",
+      "title": "EYE REPAIR \u2022 optional second repair",
+      "pos": [
+        2710,
+        2800
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 67,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 81
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 82
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            83,
+            84
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-66"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 70,
+      "type": "CRT Post-Process Suite",
+      "title": "CRT POST-PROCESS \u2022 grade / lens / grain",
+      "pos": [
+        3200,
+        1730
+      ],
+      "size": [
+        650,
+        530
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 83
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            85
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CRT Post-Process Suite",
+        "koo_preset_uid": "koo-ndn-v2-70",
+        "cnr_id": "crt-nodes",
+        "aux_id": "PGCRT/CRT-Nodes",
+        "ver": "2.5.4"
+      },
+      "widgets_values": [
+        false,
+        "4x-UltraSharpV2.pth",
+        0.5,
+        "lanczos",
+        "32",
+        1,
+        true,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        false,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        true,
+        -0.056,
+        0,
+        true,
+        1.35,
+        0.72,
+        0.32,
+        false,
+        0.396,
+        0.924,
+        0.169,
+        false,
+        0.087,
+        53.946,
+        0.19,
+        false,
+        "star_4",
+        18.933,
+        63.043,
+        0,
+        0.756,
+        28,
+        1,
+        false,
+        0.029,
+        2,
+        false,
+        0,
+        false,
+        0.842,
+        1.923,
+        2,
+        false,
+        "spin",
+        0.02,
+        0.5,
+        0.25,
+        0.05,
+        16,
+        true,
+        0.043,
+        0.461,
+        0.015,
+        false,
+        0.287,
+        ""
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 71,
+      "type": "ComfySwitchNode",
+      "title": "CRT EFFECTS \u2022 off by default",
+      "pos": [
+        3200,
+        2320
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 69,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 84
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 85
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            86,
+            87,
+            89
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-71"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 72,
+      "type": "MoreJPEG",
+      "title": "MoreJPEG \u2022 subtle compression",
+      "pos": [
+        3900,
+        1730
+      ],
+      "size": [
+        370,
+        430
+      ],
+      "flags": {},
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 86
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            88
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoreJPEG",
+        "koo_preset_uid": "koo-ndn-v2-72",
+        "cnr_id": "realisim-enhancor",
+        "aux_id": "amrnidal999-tech/comfyui-realisim-enhancor",
+        "ver": "1.0.1"
+      },
+      "widgets_values": [
+        "custom",
+        92,
+        1,
+        0,
+        1.0,
+        1,
+        8,
+        0,
+        1,
+        false,
+        false,
+        false,
+        false,
+        111111,
+        "fixed"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 73,
+      "type": "ImageBlend",
+      "title": "Blend JPEG effect into clean image",
+      "pos": [
+        3900,
+        2220
+      ],
+      "size": [
+        370,
+        155
+      ],
+      "flags": {},
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 87
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 88
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            90
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageBlend",
+        "koo_preset_uid": "koo-ndn-v2-73"
+      },
+      "widgets_values": [
+        0.25,
+        "normal"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 74,
+      "type": "ComfySwitchNode",
+      "title": "JPEG BLEND \u2022 off by default",
+      "pos": [
+        3900,
+        2460
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 72,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 89
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            36,
+            37,
+            92,
+            94
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-74"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 75,
+      "type": "Image Comparer (rgthree)",
+      "title": "COMPARE \u2022 base / selected final",
+      "pos": [
+        3190,
+        690
+      ],
+      "size": [
+        470,
+        515
+      ],
+      "flags": {},
+      "order": 75,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 91,
+          "shape": 7
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 92,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image Comparer (rgthree)",
+        "koo_preset_uid": "koo-ndn-v2-75"
+      },
+      "widgets_values": [
+        []
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 76,
+      "type": "Image Comparer (rgthree)",
+      "title": "COMPARE \u2022 before / after optional tools",
+      "pos": [
+        3200,
+        2670
+      ],
+      "size": [
+        650,
+        500
+      ],
+      "flags": {},
+      "order": 76,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 93,
+          "shape": 7
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 94,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image Comparer (rgthree)",
+        "koo_preset_uid": "koo-ndn-v2-76"
+      },
+      "widgets_values": [
+        []
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 80,
+      "type": "LoadImage",
+      "title": "REFERENCE IMAGE \u2022 pose / depth",
+      "pos": [
+        20,
+        3060
+      ],
+      "size": [
+        480,
+        420
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            97,
+            129
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "koo_preset_uid": "koo-ndn-v2-80"
+      },
+      "widgets_values": [
+        "KoO_Ndn_sample.png",
+        "image"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 81,
+      "type": "ImageScale",
+      "title": "Match reference to generation canvas",
+      "pos": [
+        550,
+        3060
+      ],
+      "size": [
+        380,
+        155
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 97
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 95,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 96,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            98,
+            106
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale",
+        "koo_preset_uid": "koo-ndn-v2-81"
+      },
+      "widgets_values": [
+        "lanczos",
+        512,
+        512,
+        "center"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 82,
+      "type": "AIO_Preprocessor",
+      "title": "Depth Anything V2",
+      "pos": [
+        1000,
+        3060
+      ],
+      "size": [
+        380,
+        160
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 98
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            99,
+            126
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AIO_Preprocessor",
+        "koo_preset_uid": "koo-ndn-v2-82"
+      },
+      "widgets_values": [
+        "DepthAnythingV2Preprocessor",
+        1024
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 83,
+      "type": "Krea2ControlImageEncode",
+      "title": "Encode depth control",
+      "pos": [
+        1000,
+        3290
+      ],
+      "size": [
+        380,
+        335
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "control_image",
+          "type": "IMAGE",
+          "link": 99
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 100
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 101,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "control_latent",
+          "type": "LATENT",
+          "links": [
+            104
+          ]
+        },
+        {
+          "name": "encoded_control_image",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2ControlImageEncode",
+        "koo_preset_uid": "koo-ndn-v2-83",
+        "aux_id": "facok/comfyui-krea2-controlnet",
+        "ver": "79ebfd3bd80d2180b334dd7ce57f3c9ddaa0848f"
+      },
+      "widgets_values": [
+        "match_latent_size",
+        "lanczos",
+        "center",
+        "rgb",
+        "none",
+        false,
+        "independent_images"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 84,
+      "type": "Krea2ControlLoRALoader",
+      "title": "Depth control LoRA \u2022 0.90",
+      "pos": [
+        1450,
+        3060
+      ],
+      "size": [
+        380,
+        160
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 102
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            103
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2ControlLoRALoader",
+        "koo_preset_uid": "koo-ndn-v2-84",
+        "aux_id": "facok/comfyui-krea2-controlnet",
+        "ver": "79ebfd3bd80d2180b334dd7ce57f3c9ddaa0848f"
+      },
+      "widgets_values": [
+        "depth-control-lora.safetensors",
+        0.9
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 85,
+      "type": "Krea2ControlApply",
+      "title": "Apply depth control",
+      "pos": [
+        1450,
+        3290
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 103
+        },
+        {
+          "name": "control_latent",
+          "type": "LATENT",
+          "link": 104
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            113
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2ControlApply",
+        "koo_preset_uid": "koo-ndn-v2-85"
+      },
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 86,
+      "type": "Krea2OstrisEditModelPatch",
+      "title": "Pose \u2022 Ostris model patch",
+      "pos": [
+        1930,
+        3290
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 105
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            107
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Krea2OstrisEditModelPatch",
+        "koo_preset_uid": "koo-ndn-v2-86",
+        "cnr_id": "comfyui-krea2-ostris-edit",
+        "aux_id": "ostris/ComfyUI-Krea2-Ostris-Edit",
+        "ver": "1.0.1"
+      },
+      "widgets_values": [
+        true
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 87,
+      "type": "DWPreprocessor",
+      "title": "DWPose \u2022 body / hands / face",
+      "pos": [
+        1930,
+        3060
+      ],
+      "size": [
+        380,
+        185
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 106
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            111,
+            127
+          ]
+        },
+        {
+          "name": "POSE_KEYPOINT",
+          "type": "POSE_KEYPOINT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DWPreprocessor",
+        "koo_preset_uid": "koo-ndn-v2-87",
+        "cnr_id": "comfyui_controlnet_aux",
+        "aux_id": "Fannovel16/comfyui_controlnet_aux",
+        "ver": "1.1.5"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        1024,
+        "yolox_l.onnx",
+        "dw-ll_ucoco_384_bs5.torchscript.pt",
+        "disable"
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 88,
+      "type": "LoraLoaderModelOnly",
+      "title": "Pose control LoRA \u2022 1.00",
+      "pos": [
+        2360,
+        3290
+      ],
+      "size": [
+        390,
+        130
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 107
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            114
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "koo_preset_uid": "koo-ndn-v2-88",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.0"
+      },
+      "widgets_values": [
+        "krea2_turbo_openpose_controlnet.safetensors",
+        1.0
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 89,
+      "type": "TextEncodeKrea2OstrisEdit",
+      "title": "Pose reference + shared prompt",
+      "pos": [
+        2360,
+        3500
+      ],
+      "size": [
+        390,
+        160
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 109
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 110,
+          "shape": 7
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 111,
+          "shape": 7
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 108,
+          "widget": {
+            "name": "prompt"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            117
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextEncodeKrea2OstrisEdit",
+        "koo_preset_uid": "koo-ndn-v2-89"
+      },
+      "widgets_values": [
+        "r0mdl, a casual handheld phone photo of an adult woman sitting beside a cafe window, wearing a white cotton T-shirt under an open blue denim shirt. Waist-up framing at conversational distance, slightly off-center. She looks toward the camera with a relaxed expression. Soft daylight from the window mixes with warmer room light. Natural variation in cheek color, small skin pores where in focus, fine flyaway hairs. The cotton has soft folds and the denim has visible seams and weave. The cafe remains recognizable behind her, with mild handheld softness and ordinary phone-camera exposure. Unretouched everyday snapshot."
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 96,
+      "type": "PrimitiveBoolean",
+      "title": "REFERENCE TYPE \u2022 OFF depth / ON pose",
+      "pos": [
+        600,
+        950
+      ],
+      "size": [
+        480,
+        90
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            112,
+            115,
+            125
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimitiveBoolean",
+        "koo_preset_uid": "koo-ndn-v2-96"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 97,
+      "type": "PrimitiveBoolean",
+      "title": "ENABLE REFERENCE \u2022 new generations only",
+      "pos": [
+        600,
+        790
+      ],
+      "size": [
+        480,
+        90
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            118,
+            121,
+            128
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimitiveBoolean",
+        "koo_preset_uid": "koo-ndn-v2-97"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 90,
+      "type": "ComfySwitchNode",
+      "title": "Route depth / pose model",
+      "pos": [
+        3320,
+        3260
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 113
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 114
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 112,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            120
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-90"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 91,
+      "type": "ComfySwitchNode",
+      "title": "Route ordinary / pose conditioning",
+      "pos": [
+        3320,
+        3440
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 116
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 117
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 115,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            123
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-91"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 93,
+      "type": "ComfySwitchNode",
+      "title": "Use reference model when enabled",
+      "pos": [
+        3320,
+        3640
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 119
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 120
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 118,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            6,
+            10,
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-93"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 94,
+      "type": "ComfySwitchNode",
+      "title": "Use reference conditioning when enabled",
+      "pos": [
+        3320,
+        3820
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 122
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 123
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 121,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            7,
+            11,
+            15,
+            124
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-94"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 95,
+      "type": "ConditioningZeroOut",
+      "title": "Reference-aware negative placeholder",
+      "pos": [
+        3320,
+        4000
+      ],
+      "size": [
+        390,
+        75
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 124
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8,
+            12,
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut",
+        "koo_preset_uid": "koo-ndn-v2-95"
+      },
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 98,
+      "type": "ComfySwitchNode",
+      "title": "Preview depth / pose map",
+      "pos": [
+        550,
+        3290
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 126
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 127
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 125,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            130
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-98"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 99,
+      "type": "ComfySwitchNode",
+      "title": "Show map only when reference is enabled",
+      "pos": [
+        550,
+        3470
+      ],
+      "size": [
+        390,
+        115
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 129
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 130
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "link": 128,
+          "widget": {
+            "name": "switch"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            131
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode",
+        "koo_preset_uid": "koo-ndn-v2-99"
+      },
+      "widgets_values": [
+        false
+      ],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 101,
+      "type": "PreviewImage",
+      "title": "REFERENCE PREVIEW \u2022 inspect before sampling",
+      "pos": [
+        20,
+        3570
+      ],
+      "size": [
+        480,
+        410
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 131
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "koo_preset_uid": "koo-ndn-v2-101"
+      },
+      "widgets_values": [],
+      "color": "#28323c",
+      "bgcolor": "#35424b"
+    },
+    {
+      "id": 110,
+      "type": "Note",
+      "title": "START \u2022 native Turbo studio",
+      "pos": [
+        940,
+        -860
+      ],
+      "size": [
+        1100,
+        400
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "1. Use preset 01 for the tested Ndn quality recipe.\n2. Edit the single PROMPT box. Character trigger: r0mdl.\n3. Power LoRA Loader: model strengths .75 / .90 / .30 / .35; CLIP strengths stay 0 to preserve the tested model-only behavior.\n4. Timer runs in the open ComfyUI tab.\n5. Optional tools live below; their switches start OFF.\n6. Native/base and final PNGs save separately. KoO Finisher applies grading only to its own export.\n\nMain row: MODELS \u2192 PROMPT / SOURCE \u2192 SAMPLING \u2192 UPSCALE \u2192 OUTPUT.\nSecond row: LOAD IMAGE \u2192 FACE / EYES \u2192 CRT / JPEG.\nThird row: REFERENCE IMAGE \u2192 DEPTH or POSE \u2192 ROUTING."
+      ]
+    },
+    {
+      "id": 111,
+      "type": "Note",
+      "title": "MODE GUIDE",
+      "pos": [
+        2140,
+        -860
+      ],
+      "size": [
+        900,
+        540
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "GENERATE: SOURCE off; reference off.\nLOAD IMAGE: SOURCE on. Refine input first? off keeps original pixels and size before upscale; on uses the canvas and img2img denoise .25.\nREFERENCE: SOURCE off; ENABLE REFERENCE on. TYPE off = depth, on = pose. Model and conditioning switch together automatically.\n\nPresets change modes/settings only; your prompt, input images and character LoRA remain yours. Style presets leave the character row untouched.\n\nUpscale: UltraSharp or NMKD; 4x model then Lanczos .375 = net 1.5x. Both are available in the model selector.\nThe two Ndn samplers are separate passes, not one continuous 15-step schedule."
+      ]
+    },
+    {
+      "id": 112,
+      "type": "Note",
+      "title": "OPTIONAL TOOLS",
+      "pos": [
+        3190,
+        -860
+      ],
+      "size": [
+        1180,
+        540
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "FACE / EYE DETAILERS: donor Ndn settings restored. Enable only to fix a visible problem; inspect character likeness afterward.\nCRT SUITE: original controls retained, built-in upscale OFF to avoid enlarging twice. Turn on the CRT switch to use its grade/grain/lens tools.\nMoreJPEG: mild quality 92, blended at .25. The JPEG switch enables it. This changes pixels; SaveImage still saves PNG.\n\nCOMPARERS: base versus final above, and before/after optional tools below.\nREFERENCE PREVIEW: shows the uploaded image when disabled, the depth/pose map when enabled.\n\nRequired: rgthree, RES4LYF, koo-nodes, CRT-Nodes, Impact Pack/Subpack, controlnet_aux, Krea2 ControlNet and Ostris Edit. All node types were found on your instance."
       ]
     }
   ],
@@ -2450,182 +6019,158 @@
     ],
     [
       2,
+      2,
+      0,
       4,
-      0,
-      5,
-      0,
-      "MODEL"
+      1,
+      "CLIP"
     ],
     [
       3,
-      5,
+      100,
       0,
-      6,
-      0,
-      "MODEL"
+      11,
+      1,
+      "STRING"
     ],
     [
       4,
-      6,
-      0,
-      7,
-      0,
-      "MODEL"
-    ],
-    [
-      5,
-      7,
-      0,
-      8,
-      0,
-      "MODEL"
-    ],
-    [
-      6,
-      8,
-      0,
-      9,
-      0,
-      "MODEL"
-    ],
-    [
-      7,
-      2,
-      0,
+      4,
+      1,
       11,
       0,
       "CLIP"
     ],
     [
+      5,
+      11,
+      0,
+      12,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      93,
+      0,
+      13,
+      0,
+      "MODEL"
+    ],
+    [
+      7,
+      94,
+      0,
+      13,
+      1,
+      "CONDITIONING"
+    ],
+    [
       8,
-      11,
-      0,
-      12,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      9,
-      9,
-      0,
-      13,
-      0,
-      "MODEL"
-    ],
-    [
-      10,
-      11,
-      0,
-      13,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      11,
-      12,
+      95,
       0,
       13,
       2,
       "CONDITIONING"
     ],
     [
-      12,
       9,
-      0,
-      14,
-      0,
-      "MODEL"
-    ],
-    [
-      13,
-      11,
-      0,
-      14,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      14,
-      12,
-      0,
-      14,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      15,
       10,
       3,
       13,
       3,
       "LATENT"
+    ],
+    [
+      10,
+      93,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      94,
+      0,
+      14,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      95,
+      0,
+      14,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      13,
+      1,
+      14,
+      3,
+      "LATENT"
+    ],
+    [
+      14,
+      93,
+      0,
+      15,
+      0,
+      "MODEL"
+    ],
+    [
+      15,
+      94,
+      0,
+      15,
+      1,
+      "CONDITIONING"
     ],
     [
       16,
-      13,
-      1,
-      14,
-      3,
-      "LATENT"
-    ],
-    [
-      17,
-      9,
-      0,
-      15,
-      0,
-      "MODEL"
-    ],
-    [
-      18,
-      11,
-      0,
-      15,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      19,
-      12,
+      95,
       0,
       15,
       2,
       "CONDITIONING"
     ],
     [
-      20,
+      17,
       10,
       3,
       15,
       3,
+      "LATENT"
+    ],
+    [
+      18,
+      15,
+      0,
+      16,
+      0,
+      "LATENT"
+    ],
+    [
+      19,
+      14,
+      1,
+      16,
+      1,
+      "LATENT"
+    ],
+    [
+      20,
+      16,
+      0,
+      17,
+      0,
       "LATENT"
     ],
     [
       21,
-      15,
-      0,
-      16,
-      0,
-      "LATENT"
-    ],
-    [
-      22,
-      14,
-      1,
-      16,
-      1,
-      "LATENT"
-    ],
-    [
-      23,
-      16,
-      0,
-      17,
-      0,
-      "LATENT"
-    ],
-    [
-      24,
       3,
       0,
       17,
@@ -2633,31 +6178,31 @@
       "VAE"
     ],
     [
-      25,
-      17,
+      22,
+      39,
       0,
       18,
       0,
       "IMAGE"
     ],
     [
-      26,
-      19,
+      23,
+      49,
       0,
       20,
       0,
       "UPSCALE_MODEL"
     ],
     [
-      27,
-      17,
+      24,
+      39,
       0,
       20,
       1,
       "IMAGE"
     ],
     [
-      28,
+      25,
       20,
       0,
       21,
@@ -2665,7 +6210,7 @@
       "IMAGE"
     ],
     [
-      29,
+      26,
       21,
       0,
       22,
@@ -2673,7 +6218,7 @@
       "IMAGE"
     ],
     [
-      30,
+      27,
       3,
       0,
       22,
@@ -2681,15 +6226,15 @@
       "VAE"
     ],
     [
-      31,
-      9,
+      28,
+      4,
       0,
       23,
       0,
       "MODEL"
     ],
     [
-      32,
+      29,
       11,
       0,
       23,
@@ -2697,7 +6242,7 @@
       "CONDITIONING"
     ],
     [
-      33,
+      30,
       12,
       0,
       23,
@@ -2705,7 +6250,7 @@
       "CONDITIONING"
     ],
     [
-      34,
+      31,
       22,
       0,
       23,
@@ -2713,7 +6258,7 @@
       "LATENT"
     ],
     [
-      35,
+      32,
       23,
       0,
       24,
@@ -2721,7 +6266,7 @@
       "LATENT"
     ],
     [
-      36,
+      33,
       3,
       0,
       24,
@@ -2729,34 +6274,786 @@
       "VAE"
     ],
     [
-      37,
-      17,
+      34,
+      39,
       0,
       25,
       0,
-      "IMAGE"
+      "*"
     ],
     [
-      38,
-      24,
+      35,
+      43,
       0,
       25,
       1,
-      "IMAGE"
+      "*"
     ],
     [
-      39,
-      25,
+      36,
+      74,
       0,
       26,
       0,
       "IMAGE"
     ],
     [
-      40,
-      25,
+      37,
+      74,
       0,
       27,
+      0,
+      "IMAGE"
+    ],
+    [
+      38,
+      10,
+      0,
+      34,
+      1,
+      "INT"
+    ],
+    [
+      39,
+      10,
+      1,
+      34,
+      2,
+      "INT"
+    ],
+    [
+      40,
+      33,
+      0,
+      34,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      34,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      42,
+      3,
+      0,
+      35,
+      1,
+      "VAE"
+    ],
+    [
+      43,
+      4,
+      0,
+      36,
+      0,
+      "MODEL"
+    ],
+    [
+      44,
+      11,
+      0,
+      36,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      45,
+      12,
+      0,
+      36,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      46,
+      35,
+      0,
+      36,
+      3,
+      "LATENT"
+    ],
+    [
+      47,
+      36,
+      0,
+      37,
+      0,
+      "LATENT"
+    ],
+    [
+      48,
+      3,
+      0,
+      37,
+      1,
+      "VAE"
+    ],
+    [
+      49,
+      33,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      50,
+      37,
+      0,
+      38,
+      1,
+      "IMAGE"
+    ],
+    [
+      51,
+      17,
+      0,
+      39,
+      0,
+      "IMAGE"
+    ],
+    [
+      52,
+      38,
+      0,
+      39,
+      1,
+      "*"
+    ],
+    [
+      53,
+      21,
+      0,
+      43,
+      0,
+      "IMAGE"
+    ],
+    [
+      54,
+      24,
+      0,
+      43,
+      1,
+      "IMAGE"
+    ],
+    [
+      55,
+      19,
+      0,
+      49,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      56,
+      48,
+      0,
+      49,
+      1,
+      "UPSCALE_MODEL"
+    ],
+    [
+      57,
+      4,
+      1,
+      52,
+      0,
+      "CLIP"
+    ],
+    [
+      58,
+      25,
+      0,
+      53,
+      0,
+      "IMAGE"
+    ],
+    [
+      59,
+      4,
+      0,
+      53,
+      1,
+      "MODEL"
+    ],
+    [
+      60,
+      4,
+      1,
+      53,
+      2,
+      "CLIP"
+    ],
+    [
+      61,
+      3,
+      0,
+      53,
+      3,
+      "VAE"
+    ],
+    [
+      62,
+      52,
+      0,
+      53,
+      4,
+      "CONDITIONING"
+    ],
+    [
+      63,
+      12,
+      0,
+      53,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      64,
+      50,
+      0,
+      53,
+      6,
+      "BBOX_DETECTOR"
+    ],
+    [
+      65,
+      51,
+      0,
+      53,
+      7,
+      "SAM_MODEL"
+    ],
+    [
+      66,
+      25,
+      0,
+      54,
+      0,
+      "*"
+    ],
+    [
+      67,
+      53,
+      0,
+      54,
+      1,
+      "IMAGE"
+    ],
+    [
+      68,
+      60,
+      0,
+      61,
+      0,
+      "BBOX_DETECTOR"
+    ],
+    [
+      69,
+      54,
+      0,
+      61,
+      1,
+      "IMAGE"
+    ],
+    [
+      70,
+      54,
+      0,
+      62,
+      0,
+      "IMAGE"
+    ],
+    [
+      71,
+      61,
+      0,
+      63,
+      0,
+      "SEGS"
+    ],
+    [
+      72,
+      62,
+      0,
+      63,
+      1,
+      "SEGS"
+    ],
+    [
+      73,
+      4,
+      1,
+      64,
+      0,
+      "CLIP"
+    ],
+    [
+      74,
+      54,
+      0,
+      65,
+      0,
+      "IMAGE"
+    ],
+    [
+      75,
+      63,
+      0,
+      65,
+      1,
+      "SEGS"
+    ],
+    [
+      76,
+      4,
+      0,
+      65,
+      2,
+      "MODEL"
+    ],
+    [
+      77,
+      4,
+      1,
+      65,
+      3,
+      "CLIP"
+    ],
+    [
+      78,
+      3,
+      0,
+      65,
+      4,
+      "VAE"
+    ],
+    [
+      79,
+      64,
+      0,
+      65,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      80,
+      12,
+      0,
+      65,
+      6,
+      "CONDITIONING"
+    ],
+    [
+      81,
+      54,
+      0,
+      66,
+      0,
+      "*"
+    ],
+    [
+      82,
+      65,
+      0,
+      66,
+      1,
+      "IMAGE"
+    ],
+    [
+      83,
+      66,
+      0,
+      70,
+      0,
+      "IMAGE"
+    ],
+    [
+      84,
+      66,
+      0,
+      71,
+      0,
+      "*"
+    ],
+    [
+      85,
+      70,
+      0,
+      71,
+      1,
+      "IMAGE"
+    ],
+    [
+      86,
+      71,
+      0,
+      72,
+      0,
+      "IMAGE"
+    ],
+    [
+      87,
+      71,
+      0,
+      73,
+      0,
+      "IMAGE"
+    ],
+    [
+      88,
+      72,
+      0,
+      73,
+      1,
+      "IMAGE"
+    ],
+    [
+      89,
+      71,
+      0,
+      74,
+      0,
+      "*"
+    ],
+    [
+      90,
+      73,
+      0,
+      74,
+      1,
+      "IMAGE"
+    ],
+    [
+      91,
+      39,
+      0,
+      75,
+      0,
+      "IMAGE"
+    ],
+    [
+      92,
+      74,
+      0,
+      75,
+      1,
+      "IMAGE"
+    ],
+    [
+      93,
+      25,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      94,
+      74,
+      0,
+      76,
+      1,
+      "IMAGE"
+    ],
+    [
+      95,
+      10,
+      0,
+      81,
+      1,
+      "INT"
+    ],
+    [
+      96,
+      10,
+      1,
+      81,
+      2,
+      "INT"
+    ],
+    [
+      97,
+      80,
+      0,
+      81,
+      0,
+      "IMAGE"
+    ],
+    [
+      98,
+      81,
+      0,
+      82,
+      0,
+      "IMAGE"
+    ],
+    [
+      99,
+      82,
+      0,
+      83,
+      0,
+      "IMAGE"
+    ],
+    [
+      100,
+      3,
+      0,
+      83,
+      1,
+      "VAE"
+    ],
+    [
+      101,
+      10,
+      3,
+      83,
+      2,
+      "LATENT"
+    ],
+    [
+      102,
+      4,
+      0,
+      84,
+      0,
+      "MODEL"
+    ],
+    [
+      103,
+      84,
+      0,
+      85,
+      0,
+      "MODEL"
+    ],
+    [
+      104,
+      83,
+      0,
+      85,
+      1,
+      "LATENT"
+    ],
+    [
+      105,
+      4,
+      0,
+      86,
+      0,
+      "MODEL"
+    ],
+    [
+      106,
+      81,
+      0,
+      87,
+      0,
+      "IMAGE"
+    ],
+    [
+      107,
+      86,
+      0,
+      88,
+      0,
+      "MODEL"
+    ],
+    [
+      108,
+      100,
+      0,
+      89,
+      5,
+      "STRING"
+    ],
+    [
+      109,
+      4,
+      1,
+      89,
+      0,
+      "CLIP"
+    ],
+    [
+      110,
+      3,
+      0,
+      89,
+      1,
+      "VAE"
+    ],
+    [
+      111,
+      87,
+      0,
+      89,
+      2,
+      "IMAGE"
+    ],
+    [
+      112,
+      96,
+      0,
+      90,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      113,
+      85,
+      0,
+      90,
+      0,
+      "MODEL"
+    ],
+    [
+      114,
+      88,
+      0,
+      90,
+      1,
+      "MODEL"
+    ],
+    [
+      115,
+      96,
+      0,
+      91,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      116,
+      11,
+      0,
+      91,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      117,
+      89,
+      0,
+      91,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      118,
+      97,
+      0,
+      93,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      119,
+      4,
+      0,
+      93,
+      0,
+      "MODEL"
+    ],
+    [
+      120,
+      90,
+      0,
+      93,
+      1,
+      "*"
+    ],
+    [
+      121,
+      97,
+      0,
+      94,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      122,
+      11,
+      0,
+      94,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      123,
+      91,
+      0,
+      94,
+      1,
+      "*"
+    ],
+    [
+      124,
+      94,
+      0,
+      95,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      125,
+      96,
+      0,
+      98,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      126,
+      82,
+      0,
+      98,
+      0,
+      "IMAGE"
+    ],
+    [
+      127,
+      87,
+      0,
+      98,
+      1,
+      "IMAGE"
+    ],
+    [
+      128,
+      97,
+      0,
+      99,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      129,
+      80,
+      0,
+      99,
+      0,
+      "IMAGE"
+    ],
+    [
+      130,
+      98,
+      0,
+      99,
+      1,
+      "*"
+    ],
+    [
+      131,
+      99,
+      0,
+      101,
       0,
       "IMAGE"
     ]
@@ -2764,66 +7061,183 @@
   "groups": [
     {
       "id": 1,
-      "title": "Models & identity",
+      "title": "00 \u2022 START / MODES / PRESETS",
       "bounding": [
-        -30,
-        20,
-        880,
-        1340
+        -20,
+        -940,
+        4610,
+        900
       ],
-      "color": "#42627a",
+      "color": "#3b596d",
       "font_size": 24,
       "flags": {}
     },
     {
       "id": 2,
-      "title": "Prompt & KoO presets",
+      "title": "01 \u2022 MODELS / POWER LORA / CANVAS",
       "bounding": [
-        850,
-        20,
-        550,
-        1340
+        -20,
+        0,
+        580,
+        1600
       ],
-      "color": "#6e527a",
+      "color": "#375c72",
       "font_size": 24,
       "flags": {}
     },
     {
       "id": 3,
-      "title": "Ndn generation + official comparison",
+      "title": "02 \u2022 PROMPT / SOURCE / REFERENCE",
       "bounding": [
-        1400,
-        20,
-        1280,
-        1100
+        570,
+        0,
+        540,
+        1600
       ],
-      "color": "#477364",
+      "color": "#695274",
       "font_size": 24,
       "flags": {}
     },
     {
       "id": 4,
-      "title": "Ndn upscale + texture recovery",
+      "title": "03 \u2022 GENERATION",
       "bounding": [
-        2685,
-        20,
-        1280,
-        1000
+        1120,
+        0,
+        950,
+        1600
       ],
-      "color": "#846044",
+      "color": "#3f6b5c",
       "font_size": 24,
       "flags": {}
     },
     {
       "id": 5,
-      "title": "KoO interactive finish",
+      "title": "04 \u2022 UPSCALE / TEXTURE",
       "bounding": [
-        4020,
-        20,
-        820,
-        1190
+        2100,
+        0,
+        980,
+        1600
       ],
-      "color": "#6e527a",
+      "color": "#7a6044",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "05 \u2022 SAVE / COMPARE / FINISH",
+      "bounding": [
+        3140,
+        0,
+        1450,
+        1600
+      ],
+      "color": "#3e6471",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "06 \u2022 LOADED IMAGE / IMG2IMG",
+      "bounding": [
+        -20,
+        1640,
+        1330,
+        1290
+      ],
+      "color": "#695274",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "07 \u2022 OPTIONAL FACE REPAIR",
+      "bounding": [
+        1340,
+        1640,
+        900,
+        1290
+      ],
+      "color": "#536879",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "08 \u2022 OPTIONAL EYE REPAIR",
+      "bounding": [
+        2250,
+        1640,
+        890,
+        1310
+      ],
+      "color": "#536879",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 10,
+      "title": "09 \u2022 OPTIONAL CRT / JPEG / COMPARISON",
+      "bounding": [
+        3160,
+        1640,
+        1260,
+        1570
+      ],
+      "color": "#725766",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 11,
+      "title": "10 \u2022 REFERENCE INPUT",
+      "bounding": [
+        -20,
+        2980,
+        980,
+        1050
+      ],
+      "color": "#695274",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 12,
+      "title": "11 \u2022 DEPTH CONTROL",
+      "bounding": [
+        970,
+        2980,
+        900,
+        1050
+      ],
+      "color": "#476d61",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 13,
+      "title": "12 \u2022 POSE CONTROL",
+      "bounding": [
+        1890,
+        2980,
+        900,
+        1050
+      ],
+      "color": "#476d61",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 14,
+      "title": "13 \u2022 AUTOMATIC CONTROL ROUTING",
+      "bounding": [
+        3290,
+        3220,
+        1110,
+        1050
+      ],
+      "color": "#4f596b",
       "font_size": 24,
       "flags": {}
     }
@@ -2831,18 +7245,18 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.5,
+      "scale": 0.3,
       "offset": [
         60,
-        400
+        990
       ]
     },
     "merged_workflow": {
-      "status": "render-tested settings; see included guide for scope",
+      "version": 2,
       "source_repository": "https://github.com/simbo1005/custom_wf",
-      "source_commit": "5b07aa5",
       "character_trigger": "r0mdl",
-      "comparison_count": 20
+      "base_recipe": "20 comparison renders; optional tools restored separately",
+      "power_lora_clip_strength": 0
     }
   },
   "version": 0.4
