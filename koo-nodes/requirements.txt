@@ -1,0 +1,6 @@
+# No additional pip packages are required for the focused KoO Nodes v1.0.0
+# release candidate beyond a normal ComfyUI Python runtime.
+#
+# The included nodes use ComfyUI/runtime-provided packages such as torch, numpy,
+# Pillow, folder_paths, comfy, nodes, server APIs, comfy_api.latest, and
+# node_helpers. Verify the minimum target ComfyUI baseline before publication.

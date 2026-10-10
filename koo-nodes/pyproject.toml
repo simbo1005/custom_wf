@@ -1,0 +1,20 @@
+[project]
+name = "koo-nodes"
+version = "1.0.1"
+description = "KoO Nodes for ComfyUI: resolution, image crop, workflow, prompt, sampling, noise, latent, finishing, and utility nodes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "TODO: choose license before publication" }
+dependencies = []
+
+[tool.comfy]
+PublisherId = "TODO_PUBLISHER_ID"
+DisplayName = "KoO Nodes"
+Icon = ""
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.packages.find]
+include = ["nodes*", "shared*"]
+exclude = ["tests*", "docs*", "assets*"]
