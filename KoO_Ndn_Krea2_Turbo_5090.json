@@ -1,6 +1,6 @@
 {
   "id": "62934c3e-b83a-47c1-be40-3c90fb38dcfa",
-  "revision": 2,
+  "revision": 3,
   "last_node_id": 112,
   "last_link_id": 131,
   "nodes": [
@@ -61,7 +61,12 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            2
+            4,
+            57,
+            60,
+            73,
+            77,
+            109
           ]
         }
       ],
@@ -123,7 +128,7 @@
     {
       "id": 4,
       "type": "Power Lora Loader (rgthree)",
-      "title": "Character + style \u2022 Power LoRA Loader",
+      "title": "MODEL ONLY \u2022 Power LoRA Loader",
       "pos": [
         20,
         570
@@ -145,7 +150,7 @@
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 2,
+          "link": null,
           "shape": 7
         }
       ],
@@ -166,20 +171,13 @@
         {
           "name": "CLIP",
           "type": "CLIP",
-          "links": [
-            4,
-            57,
-            60,
-            73,
-            77,
-            109
-          ]
+          "links": []
         }
       ],
       "properties": {
         "Node name for S&R": "Power Lora Loader (rgthree)",
         "koo_preset_uid": "koo-ndn-v2-4",
-        "Show Strengths": "Separate Model & Clip",
+        "Show Strengths": "Single Strength",
         "Match": "",
         "cnr_id": "rgthree-comfy",
         "aux_id": "rgthree/rgthree-comfy"
@@ -192,38 +190,32 @@
         {
           "on": true,
           "lora": "r0mdl_000002750.safetensors",
-          "strength": 0.75,
-          "strengthTwo": 0.0
+          "strength": 0.75
         },
         {
           "on": true,
           "lora": "RealisticSnapshotKrea2.safetensors",
-          "strength": 0.9,
-          "strengthTwo": 0.0
+          "strength": 0.9
         },
         {
           "on": true,
           "lora": "Krea2_Realistic_Skin_Texture.safetensors",
-          "strength": 0.3,
-          "strengthTwo": 0.0
+          "strength": 0.3
         },
         {
           "on": true,
           "lora": "phone_photography_2020_krea2.safetensors",
-          "strength": 0.35,
-          "strengthTwo": 0.0
+          "strength": 0.35
         },
         {
           "on": false,
           "lora": "realism_engine_krea2_v3.1.safetensors",
-          "strength": 0.0,
-          "strengthTwo": 0.0
+          "strength": 0.0
         },
         {
           "on": false,
           "lora": "lenovo_krea2.safetensors",
-          "strength": 0.0,
-          "strengthTwo": 0.0
+          "strength": 0.0
         },
         {},
         ""
@@ -2767,7 +2759,7 @@
               {
                 "koo_uid": "koo-ndn-v2-4",
                 "type": "Power Lora Loader (rgthree)",
-                "title": "Character + style \u2022 Power LoRA Loader",
+                "title": "MODEL ONLY \u2022 Power LoRA Loader",
                 "id_at_capture": 4,
                 "widgets": [
                   {
@@ -2777,8 +2769,7 @@
                     "value": {
                       "on": true,
                       "lora": "RealisticSnapshotKrea2.safetensors",
-                      "strength": 0.9,
-                      "strengthTwo": 0.0
+                      "strength": 0.9
                     }
                   },
                   {
@@ -2788,8 +2779,7 @@
                     "value": {
                       "on": true,
                       "lora": "Krea2_Realistic_Skin_Texture.safetensors",
-                      "strength": 0.3,
-                      "strengthTwo": 0.0
+                      "strength": 0.3
                     }
                   },
                   {
@@ -2799,8 +2789,7 @@
                     "value": {
                       "on": true,
                       "lora": "phone_photography_2020_krea2.safetensors",
-                      "strength": 0.35,
-                      "strengthTwo": 0.0
+                      "strength": 0.35
                     }
                   },
                   {
@@ -2810,8 +2799,7 @@
                     "value": {
                       "on": false,
                       "lora": "realism_engine_krea2_v3.1.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2821,8 +2809,7 @@
                     "value": {
                       "on": false,
                       "lora": "lenovo_krea2.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   }
                 ]
@@ -2838,7 +2825,7 @@
               {
                 "koo_uid": "koo-ndn-v2-4",
                 "type": "Power Lora Loader (rgthree)",
-                "title": "Character + style \u2022 Power LoRA Loader",
+                "title": "MODEL ONLY \u2022 Power LoRA Loader",
                 "id_at_capture": 4,
                 "widgets": [
                   {
@@ -2848,8 +2835,7 @@
                     "value": {
                       "on": true,
                       "lora": "RealisticSnapshotKrea2.safetensors",
-                      "strength": 1.25,
-                      "strengthTwo": 0.0
+                      "strength": 1.25
                     }
                   },
                   {
@@ -2859,8 +2845,7 @@
                     "value": {
                       "on": true,
                       "lora": "Krea2_Realistic_Skin_Texture.safetensors",
-                      "strength": 0.6,
-                      "strengthTwo": 0.0
+                      "strength": 0.6
                     }
                   },
                   {
@@ -2870,8 +2855,7 @@
                     "value": {
                       "on": true,
                       "lora": "phone_photography_2020_krea2.safetensors",
-                      "strength": 1.0,
-                      "strengthTwo": 0.0
+                      "strength": 1.0
                     }
                   },
                   {
@@ -2881,8 +2865,7 @@
                     "value": {
                       "on": false,
                       "lora": "realism_engine_krea2_v3.1.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2892,8 +2875,7 @@
                     "value": {
                       "on": true,
                       "lora": "lenovo_krea2.safetensors",
-                      "strength": 0.25,
-                      "strengthTwo": 0.0
+                      "strength": 0.25
                     }
                   }
                 ]
@@ -2909,7 +2891,7 @@
               {
                 "koo_uid": "koo-ndn-v2-4",
                 "type": "Power Lora Loader (rgthree)",
-                "title": "Character + style \u2022 Power LoRA Loader",
+                "title": "MODEL ONLY \u2022 Power LoRA Loader",
                 "id_at_capture": 4,
                 "widgets": [
                   {
@@ -2919,8 +2901,7 @@
                     "value": {
                       "on": false,
                       "lora": "RealisticSnapshotKrea2.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2930,8 +2911,7 @@
                     "value": {
                       "on": false,
                       "lora": "Krea2_Realistic_Skin_Texture.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2941,8 +2921,7 @@
                     "value": {
                       "on": false,
                       "lora": "phone_photography_2020_krea2.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2952,8 +2931,7 @@
                     "value": {
                       "on": false,
                       "lora": "realism_engine_krea2_v3.1.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   },
                   {
@@ -2963,8 +2941,7 @@
                     "value": {
                       "on": false,
                       "lora": "lenovo_krea2.safetensors",
-                      "strength": 0.0,
-                      "strengthTwo": 0.0
+                      "strength": 0.0
                     }
                   }
                 ]
@@ -5960,7 +5937,7 @@
       "outputs": [],
       "properties": {},
       "widgets_values": [
-        "1. Use preset 01 for the tested Ndn quality recipe.\n2. Edit the single PROMPT box. Character trigger: r0mdl.\n3. Power LoRA Loader: model strengths .75 / .90 / .30 / .35; CLIP strengths stay 0 to preserve the tested model-only behavior.\n4. Timer runs in the open ComfyUI tab.\n5. Optional tools live below; their switches start OFF.\n6. Native/base and final PNGs save separately. KoO Finisher applies grading only to its own export.\n\nMain row: MODELS \u2192 PROMPT / SOURCE \u2192 SAMPLING \u2192 UPSCALE \u2192 OUTPUT.\nSecond row: LOAD IMAGE \u2192 FACE / EYES \u2192 CRT / JPEG.\nThird row: REFERENCE IMAGE \u2192 DEPTH or POSE \u2192 ROUTING."
+        "1. Use preset 01 for the tested Ndn quality recipe.\n2. Edit the single PROMPT box. Character trigger: r0mdl.\n3. Power LoRA Loader: model strengths .75 / .90 / .30 / .35; Single strength per row; CLIP is disconnected and goes directly to the text/detailer nodes.\n4. Timer runs in the open ComfyUI tab.\n5. Optional tools live below; their switches start OFF.\n6. Native/base and final PNGs save separately. KoO Finisher applies grading only to its own export.\n\nMain row: MODELS \u2192 PROMPT / SOURCE \u2192 SAMPLING \u2192 UPSCALE \u2192 OUTPUT.\nSecond row: LOAD IMAGE \u2192 FACE / EYES \u2192 CRT / JPEG.\nThird row: REFERENCE IMAGE \u2192 DEPTH or POSE \u2192 ROUTING."
       ]
     },
     {
@@ -6018,14 +5995,6 @@
       "MODEL"
     ],
     [
-      2,
-      2,
-      0,
-      4,
-      1,
-      "CLIP"
-    ],
-    [
       3,
       100,
       0,
@@ -6035,8 +6004,8 @@
     ],
     [
       4,
-      4,
-      1,
+      2,
+      0,
       11,
       0,
       "CLIP"
@@ -6459,8 +6428,8 @@
     ],
     [
       57,
-      4,
-      1,
+      2,
+      0,
       52,
       0,
       "CLIP"
@@ -6483,8 +6452,8 @@
     ],
     [
       60,
-      4,
-      1,
+      2,
+      0,
       53,
       2,
       "CLIP"
@@ -6587,8 +6556,8 @@
     ],
     [
       73,
-      4,
-      1,
+      2,
+      0,
       64,
       0,
       "CLIP"
@@ -6619,8 +6588,8 @@
     ],
     [
       77,
-      4,
-      1,
+      2,
+      0,
       65,
       3,
       "CLIP"
@@ -6875,8 +6844,8 @@
     ],
     [
       109,
-      4,
-      1,
+      2,
+      0,
       89,
       0,
       "CLIP"
@@ -7256,7 +7225,7 @@
       "source_repository": "https://github.com/simbo1005/custom_wf",
       "character_trigger": "r0mdl",
       "base_recipe": "20 comparison renders; optional tools restored separately",
-      "power_lora_clip_strength": 0
+      "power_lora_mode": "model only; single strength; CLIP bypasses loader"
     }
   },
   "version": 0.4

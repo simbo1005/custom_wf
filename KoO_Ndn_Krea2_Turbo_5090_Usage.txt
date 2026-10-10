@@ -13,8 +13,9 @@ Choose preset 01 in the KoO manager, then Apply. Edit the single PROMPT box.
 Character: r0mdl_000002750.safetensors, trigger r0mdl, model strength 0.75.
 Power LoRA Loader replaces six separate loaders. Model strengths:
 Snapshot 0.90; Skin Texture 0.30; Phone Photography 0.35.
-Realism engine and Lenovo start disabled. Keep CLIP strengths at zero to
-preserve the tested model-only behavior. Style presets leave character alone.
+Realism engine and Lenovo start disabled. The loader uses Single Strength,
+with no CLIP connection. CLIP goes directly to text and detailer nodes.
+Style presets leave character alone.
 
 MODES / PRESETS
 01  Generate: selected Ndn quality, net 1.5x upscale and texture pass.
